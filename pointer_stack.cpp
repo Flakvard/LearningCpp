@@ -1,4 +1,3 @@
-#include <memory>
 #include <iostream>
 
 
@@ -11,7 +10,27 @@ int main(){
     int num1 = 10;
     int num2 = 99;
    // num2 = &num1; // this wont work: You cannot assaign the address of num1 to a int num2 (int* num2 needs to be a pointer)
-   int* ptr_to_num2 = &num2;
+
+   int* ptr_to_num1 = &num1; // now the pointer holds the address and value of num1 
+   int* ptr_to_num2; // initiate a pointer
+   ptr_to_num2 = &num2; // now the pointer holds the address and value of num2
+
+   // Pointer of pointers = array
+   // int* arr_of_pointers[2] = {&ptr_to_num1, &ptr_to_num2}; // Does not work: cannot initialize int** to int*
+   // int** arr_of_pointers[2] = {ptr_to_num1, ptr_to_num2}; // Does not work: No '&' cannot initialize int** to int
+
+   int** arr_of_pointers[2] = {&ptr_to_num1, &ptr_to_num2}; // Works: array of pointers (**int of *ints)
+   // array assaingmen NOT WORKING YET
+   //int** arr_of_pointers[2]
+   //arr_of_pointers[] = ptr_to_num1; // Works: array of pointers (**int of *ints)
+   //arr_of_pointers[] = ptr_to_num2; // Works: array of pointers (**int of *ints)
+
+//    int*** 2d_of_pointers[2][2] = {
+//         {
+//             arr_of_pointers[], 
+//             arr_of_pointers[]
+//         }
+//     }; // Works: array of pointers (**int of *ints)
 
 { // Scope inside main()
     // int* ptr_to_num1 = num1; // this wont work: You need address address of num1 by using reference '&'.
