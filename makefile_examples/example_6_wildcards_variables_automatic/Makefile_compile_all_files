@@ -1,0 +1,8 @@
+# Makefile automatically detects the files and compiles them
+# dependes on all four targets
+all: one two three four
+
+# one.cpp two.cpp three.cpp four.cpp in directory will all be compiles
+
+clean:
+	rm four three two one

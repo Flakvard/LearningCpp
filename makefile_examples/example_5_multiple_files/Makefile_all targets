@@ -1,0 +1,15 @@
+# this is the first target and it creates all files, because it depencs on all
+# does not run first, if it is below one: or the others. Then you have to call 'make all'
+all: one two three
+
+one: 
+	touch one
+
+two: 
+	touch two
+
+three: 
+	touch three
+
+clean:
+	rm one two three
