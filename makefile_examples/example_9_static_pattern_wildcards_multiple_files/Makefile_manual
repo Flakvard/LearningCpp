@@ -1,0 +1,21 @@
+objects := foo.o bar.o all.o
+
+all: $(objects) #1. checks depenency variables objects
+
+foo.o:foo.c
+bar.o:bar.c
+all.o:all.c
+
+all.c:
+	echo "int main(){ return 0;}" > all.c
+
+%.c: # 2. wildcard all and create all.c + foo.c + bar.c (will also create all.c.c, if not manually done echo /*code*/ > all.c )
+	touch $@
+	# this will create a file for all, all.c, foo.c, bar.c
+
+%.c: # wildcard all targets/files that end with .c 
+	echo "int main(){ return 0;}" > $@
+	#this will echo and place inside file name
+
+clean:
+	rm *.c *.o all.c.c
