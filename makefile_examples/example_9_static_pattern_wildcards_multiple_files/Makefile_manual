@@ -2,9 +2,9 @@ objects := foo.o bar.o all.o
 
 all: $(objects) #1. checks depenency variables objects
 
-foo.o:foo.c
-bar.o:bar.c
-all.o:all.c
+foo.o:foo.c # compile foo.c
+bar.o:bar.c # compile bar.c
+all.o:all.c # compile all.c
 
 all.c:
 	echo "int main(){ return 0;}" > all.c
