@@ -1,0 +1,19 @@
+obj_files := foo.o bar.o lose.o all.o
+src_files := foo.c bar.c lose.c all.c
+
+all: $(obj_files) #1. starts here and depends on obj_files 
+
+$(filter %.o, $(obj_files)): %.o : %.c
+#	echo "target: $@ prereq $<"
+
+$(filter %.result, $(obj_files)): %.result : %.raw
+#	echo "target: $@ prereq $<"
+
+%.c %.raw:
+	echo "int main(){ return 0; }" > $@
+
+%.c %.raw:
+	touch $@ 
+
+clean:
+	rm $(src_files) $(obj_files)
