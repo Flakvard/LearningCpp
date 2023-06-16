@@ -1,0 +1,21 @@
+# error handling
+# - behinde a command to supress the error and continue
+# -i in the make command `make -i` will `ignore-errors` supress all error and execute commands that can be executed
+# -k in the mame command `make -k` will `--keep-going` when some targes can't be made
+# there is not much difference between `make` and `make -k`. -k is suppose to give more info about all errors
+
+# Example
+#one:
+#	false # error, stop the make command
+#	touch one #this wont run - `make -i` will force to skip errors and run this
+
+one:two
+	false # supress error and continue `make -i` will supress all commands and continue
+	touch one # this will only run with `make -i`. `make` and `make -k` wont work
+two:three
+	-false
+	touch two # will be created with make and make -k
+three:
+	touch three # will be created with make and make -k
+clean:
+	rm one two three

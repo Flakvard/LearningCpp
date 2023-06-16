@@ -1,0 +1,15 @@
+all:
+# this wont work because we need to add a semi-colon ';'
+	cd ..
+	pwd
+
+# this will work 
+	cd ..; pwd
+
+# \ will make a linebreak
+	cd ..; \
+	pwd
+
+# or you can echo pwd. Need to use `` otherwise it wont execute
+	cd ..; \
+	echo `pwd`

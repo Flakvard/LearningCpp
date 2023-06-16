@@ -1,0 +1,8 @@
+make_var := I am a make variable
+
+all:
+# This is the same way we run echo in the shell terminal
+	sh_var='I am a shell variable'; echo $$sh_var
+
+# This is the same results, but run on the make file
+	echo $(make_var)
