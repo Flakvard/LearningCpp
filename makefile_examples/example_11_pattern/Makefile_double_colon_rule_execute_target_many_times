@@ -1,0 +1,15 @@
+# Doulbe :: colon rule
+# use the same target many times to do many commands
+all: blah
+
+blah::
+	echo "hello the first time"
+
+blah::
+	echo "hello again the second time"
+
+blah::
+	echo "hello again the third time"
+
+blah::
+	echo "hello again the forth time"

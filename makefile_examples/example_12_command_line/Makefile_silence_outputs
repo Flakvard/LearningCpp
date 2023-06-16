@@ -1,0 +1,14 @@
+# silence outputs
+all::
+	@echo "hello world" 
+# output:
+# hello world	
+all::
+	echo "hello world"
+# output:
+# echo "hello world"
+# hello world	
+
+# Alternative you can write
+# make -s 
+# to silence all outputs

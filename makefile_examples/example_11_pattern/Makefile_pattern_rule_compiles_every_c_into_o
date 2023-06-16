@@ -1,0 +1,4 @@
+# Define a pattern rule that compiles every .c file into a .o file
+%.o : %.c # *.o files depend on *.c files/targets
+		$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@ 
+# compile $< 'prereq' *.c file names and '-o' output $@ name of *.o files

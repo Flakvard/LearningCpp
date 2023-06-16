@@ -2,7 +2,7 @@ objects := foo.o bar.o all.o
 
 all: $(objects)
 
-# objects target depends on all the *.o files and all the *.o depend on all the *.c files
+# to silence all outputsobjects target depends on all the *.o files and all the *.o depend on all the *.c files
 # this also compiles all the *.c files into *.o files after all the *.c targets have been executed
 $(objects): %.o : %.c
 
