@@ -1,0 +1,9 @@
+# on the command line run this
+# export shell_env_var='I am a shell variable from command line'; make
+# takes/exports the variable inside make and initiates the variable and runs make 
+all:
+# prints the shell variable
+	echo $$shell_env_var
+	
+# prints the make variable
+	echo $(shell_env_var)
