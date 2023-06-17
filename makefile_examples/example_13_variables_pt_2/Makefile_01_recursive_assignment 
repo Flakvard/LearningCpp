@@ -1,0 +1,15 @@
+# '=' is recursive. Assigns one and $(later) variable
+one = one $(later)
+# ':=' is not recursive. Only assigns two and not the variable
+two := two $(later)
+
+later = the later message
+
+all:
+	@echo $(one)
+	@echo $(two)
+
+#output for one
+# one the later message
+#output for two
+# two
