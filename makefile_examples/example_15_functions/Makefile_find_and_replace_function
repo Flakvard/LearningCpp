@@ -1,0 +1,23 @@
+# first function
+# make has a lot of built in commands
+# use for text-proccessing
+fupa := ${subst not, totally, "I am not superman"}
+one: 
+	@echo $(fupa)
+
+
+# another example
+comma := ,
+empty:=
+space := $(empty) $(empty)
+foo := a b c
+# Correct way to do it
+bar := $(subst $(space),$(comma),$(foo))
+# DO not do this
+barman := $(subst $(space), $(comma) , $(foo))
+
+two: 
+# Output is "a,b,c"
+	@echo $(bar)
+# Output is ", a , b , c". Notice the spaces introduced
+	@echo $(barman)
