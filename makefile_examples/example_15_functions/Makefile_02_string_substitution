@@ -1,0 +1,21 @@
+# one, two and three all output the same results, just different ways to do it
+#
+# one: uses $(patsubst pattern,replacement,text) = all *.o files get replaces with *.c files inside text variable $(foo)  
+# two: foo depends on all *.o files assign to all *.c files
+# three: does the same as two
+
+foo := a.o b.o l.a c.o
+one := $(patsubst %.o,%.c,$(foo))
+# This is a shorthand for the above
+two := $(foo:%.o=%.c)
+# This is the suffix-only shorthand, and is also equivalent to the above.
+three := $(foo:.o=.c)
+
+all:
+	echo $(one)
+	echo $(two)
+	echo $(three)
+# output:
+# a.c b.c l.a c.c
+# a.c b.c l.a c.c
+# a.c b.c l.a c.c

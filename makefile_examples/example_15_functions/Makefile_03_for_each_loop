@@ -1,0 +1,8 @@
+foo := who are you
+# For each "word" in foo, output that same word with an exclamation after
+# Syntax = $(foreach var,list,text) - ´var´ is just the variable for the words inside
+bar := $(foreach wrd,$(foo),$(wrd)!)
+
+all:
+	# Output is "who! are! you!"
+	@echo $(bar)
