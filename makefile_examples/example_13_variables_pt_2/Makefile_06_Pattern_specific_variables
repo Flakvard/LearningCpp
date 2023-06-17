@@ -1,0 +1,13 @@
+# Pattern specific variables
+
+%.c: one = cool
+
+blah.c: 
+	echo one is defined: $(one)
+#output
+#one is cool
+
+other:
+	echo one is nothing: $(one)
+#output
+#one is nothing
