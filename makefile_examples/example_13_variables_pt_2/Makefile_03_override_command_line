@@ -1,0 +1,10 @@
+# Overrides command line arguments
+# running on command line make option_one=hi will not work
+override option_one = did_override
+
+# Does not override command line arguments
+# running on command line make option_two=hi will work
+option_two = not_override
+all: 
+	echo $(option_one)
+	echo $(option_two)
