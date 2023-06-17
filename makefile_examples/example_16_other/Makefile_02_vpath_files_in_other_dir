@@ -1,3 +1,4 @@
+# Use vpath to specify where some set of prerequisites exist
 # Syntax for vpath <pattern> <directories, space/colon separated>
 vpath %.h ../headers ../other-directory
 
