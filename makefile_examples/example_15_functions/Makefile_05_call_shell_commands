@@ -1,0 +1,4 @@
+# call a shell command
+all: 
+# Very ugly because the newlines are gone!
+	@echo $(shell ls -la) 
