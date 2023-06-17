@@ -12,7 +12,9 @@ all:
 	@echo "\n------END MAKEFILE CONTENTS-------"
 	cd ./subdir && $(MAKE)
 
+# define cooly variable as a string
 cooly = "The subdirectory can see me!"
+# export this variable, so that it becomes accesible for the second make command inside subdir
 export cooly
 
 clean:
