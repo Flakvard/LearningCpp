@@ -1,0 +1,6 @@
+# first function
+# make has a lot of built in commands
+# use for text-proccessing
+bar := ${subst not, totally, "I am not superman"}
+all: 
+	@echo $(bar)
