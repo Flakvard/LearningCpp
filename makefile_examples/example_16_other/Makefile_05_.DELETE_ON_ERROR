@@ -1,0 +1,14 @@
+# will skip delete if `make -i` is used
+# if `make -k` is used it will delete one, but it will not delete two
+.DELETE_ON_ERROR:
+all: one two
+
+one:
+# This file gets created
+	touch one #
+# error hit and one file get deleted
+	false
+
+two:
+# this never gets created, unless `make -k` is used
+	touch two
