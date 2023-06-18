@@ -1,0 +1,10 @@
+some_file:
+	touch some_file
+	touch clean
+
+# .PHONY enables us to execture clean eventhough the files is in the folder
+# if not specified after clean file is created, then clean command will not run
+.PHONY: clean
+clean:
+	rm -f some_file
+	rm -f clean
