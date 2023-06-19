@@ -7,11 +7,11 @@ BIN := test
 all: $(BIN)
 
 $(BIN): $(OBJ)
-	g++ -Wall -Wextra $^ -o $@ -lgtest
+	g++ -Wall -Wextra $^ -o $@ -lgtest -pthread
 $(OBJ):%.o:
 
 %.o:%.cpp
-	g++ -Wall -Wextra -c $^ -lgtest
+	g++ -Wall -Wextra -c $^ -lgtest -pthread
 
 .PHONY: clean
 clean:
