@@ -3,23 +3,16 @@ OBJ= multiply.o multiply_test.o
 
 BIN := test
 
-#all:$(BIN)
-
-#$(BIN):$(OBJ)
-#	#g++ -o $@ $^
-
-#%.o:%.cpp
-#	#g++ -Wall -Wextra -l gtest -o $^ multiply.h
-
 .PHONY: all
 all: $(BIN)
 
 $(BIN): $(OBJ)
-	g++ -o $@ $^
+	g++ -Wall -Wextra $^ -o $@ -lgtest
+$(OBJ):%.o:
 
 %.o:%.cpp
-	g++ -Wall -Wextra -l gtest -o $^ multiply.h
+	g++ -Wall -Wextra -c $^ -lgtest
 
 .PHONY: clean
-#clean:
-#	rm -rf $(BIN) $(OBJ)
+clean:
+	rm -rf $(BIN) $(OBJ)
