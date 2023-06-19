@@ -11,9 +11,14 @@
 
 add_executable(multiply_test multiply_test.cpp)
 
+# Locate GTest
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+ 
 target_link_libraries(multiply_test
- PRIVATE
-  GTest::GTest
+# PRIVATE
+# GTest::GTest
+  ${GTEST_LIBRARIES}
   multiply)
 
 add_test(multiply_gtest multiply_test)
