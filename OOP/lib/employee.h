@@ -22,6 +22,9 @@ public:
     // virtual void createEmployee();
     virtual string getName();
     virtual int getAge();
+    virtual void setName(string n);
+    virtual void setAge(int a); 
     //Employee* CreateEmployees(TypeOfEmployee); 
+    virtual ~Employee();
 };
 #endif

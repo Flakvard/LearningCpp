@@ -30,13 +30,19 @@ int main(){
     cout<<Job.getName()<<" is "<<Job.getAge()<<" old and he is a "<<Job.getProgLang()<<" programmer\n";
 
     Developer* PtrToJob = &Job;
-    Developer* testre = new Developer();
-    cout<<testre->getAge()<<'\n';
-    delete testre;
-    cout<<testre->getAge()<<'\n';
-
     cout<<PtrToJob->getName()<<'\n'; // same thing Job.getName() but only availabe with virual functions
     cout<<(*PtrToJob).getName()<<'\n'; // same as ->
+
+    Developer* DevPointer = new Developer();
+    cout<<DevPointer->getAge()<<'\n';
+    cout<<DevPointer->getName()<<'\n';
+    DevPointer->setAge(23);
+    DevPointer->setName("Simon");
+    cout<<DevPointer->getName()<<'\n';
+    cout<<DevPointer->getAge()<<'\n';
+    delete DevPointer;
+    cout<<DevPointer->getAge()<<'\n';
+
 
     return 0;
 }

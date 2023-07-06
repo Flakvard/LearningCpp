@@ -25,3 +25,17 @@ string Employee::getName(){
 int Employee::getAge(){
     return age;
  }
+
+ void Employee::setName(string n){
+    name = n;
+ }
+
+ void Employee::setAge(int a){
+    age = a;
+ }
+
+ Employee::~Employee()
+ {
+    cout<<"Destructor for "<<Employee::getName()<<" employee called\n";
+    // delete this;
+ }
