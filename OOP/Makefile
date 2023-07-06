@@ -9,11 +9,11 @@ buildFolder = ./build
 all: $(BIN)
 
 $(BIN): $(OBJ)
-	mv *.o $(buildFolder)
 	g++ -Wall -Wextra $(OBJ) -o $(BIN)
 
 $(OBJ): $(SRC)
 	g++ -Wall -Wextra -c $(SRC) 
+	mv *.o $(buildFolder)
 
 clean:
 	rm -rf $(buildFolder)/*
