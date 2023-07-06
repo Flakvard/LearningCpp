@@ -1,7 +1,10 @@
 #include "developer.h"
 
-Developer::Developer(string name, int age, string ProgramLang)
+Developer::Developer(string name, int age, string ProgramLang) : Employee(name, age)
 {
-    Employee(name, age);
     ProgrammingLanguage = ProgramLang;
+}
+
+string Developer::getProgLang(){
+    return ProgrammingLanguage;
 }

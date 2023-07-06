@@ -16,7 +16,6 @@ int main(){
 
     Employee Hellen = Employee("Hellen", 43);
     cout<<Hellen.getName()<<" is "<<Hellen.getAge()<<" old\n";
-    cout<<Hellen.getName()<<" is "<<Hellen.getAge()<<" old\n";
 
     Developer Job = Developer("Job",23,"C++");
     cout<<Job.getName()<<" is "<<Job.getAge()<<" old\n";

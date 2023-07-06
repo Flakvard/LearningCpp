@@ -1,7 +1,8 @@
 SRC = ./src/main.cpp ./src/factory.cpp ./src/employee.cpp ./src/developer.cpp ./src/teacher.cpp
-OBJ = main.o factory.o employee.o developer.o teacher.o
+OBJ = $(patsubst ./src/%.cpp, ./build/%.o, $(SRC))
 
-BIN = ./build/tester
+BIN = $(buildFolder)/tester
+
 srcFolder := ./src/
 
 buildFolder = ./build
@@ -12,8 +13,9 @@ all: $(BIN)
 $(BIN): $(OBJ)
 	g++ -o $@ $(OBJ) 
 
-$(OBJ): $(SRC)
-	g++ -Wall -Wextra -c $^
+./build/%.o: ./src/%.cpp
+	@mkdir -p $(@D)
+	g++ -Wall -Wextra -c -o $@ $<
 
 
 clean:
