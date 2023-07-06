@@ -11,7 +11,7 @@ int main(){
     string hello = "Hello";
     Employee Bob("Bob",23);
     cout<<Bob.getName()<<" is "<<Bob.getAge()<<" old\n";
-    Employee Jack = Employee("Jack",33);
+    Employee Jack = Employee("Jack",33,TypeOfEmployee::DEVELOPER);
     cout<<Jack.getName()<<" is "<<Jack.getAge()<<" old\n";
 
 
@@ -25,7 +25,7 @@ int main(){
     cout<<PtrToJob->getName()<<'\n'; // same thing Job.getName() but only availabe with virual functions
     cout<<(*PtrToJob).getName()<<'\n'; // same as ->
 
-    
+
 
 
 

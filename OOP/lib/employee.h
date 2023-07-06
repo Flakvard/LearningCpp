@@ -6,6 +6,10 @@
 
 using namespace std;
 
+enum class TypeOfEmployee {
+    DEVELOPER,TEACHER
+};
+
 class Employee
 {
 private:
@@ -14,6 +18,7 @@ private:
 public:
     Employee();
     Employee(string n, int a);
+    Employee(string n, int a, TypeOfEmployee type);
     virtual string getName();
     virtual int getAge();
 };
