@@ -11,6 +11,7 @@ private:
     /* data */
     string ProgrammingLanguage;
 public:
+    Developer();
     Developer(string n, int a, string ProgramLang);
     string getProgLang();
 };

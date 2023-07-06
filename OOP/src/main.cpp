@@ -9,9 +9,17 @@ using namespace std;
 int main(){
     cout<<"Hello world\n";
     string hello = "Hello";
+
+    // Employee Creator;
+    // Employee* TeacherCreator = Creator.CreateEmployees(3);
+    // cout<<TeacherCreator->getJobName();
+
+    // Employee DeveloperCreator = new DeveloperFactory();
+    // Developer Jacky = DeveloperCreator.createDeveloper();
+
     Employee Bob("Bob",23);
     cout<<Bob.getName()<<" is "<<Bob.getAge()<<" old\n";
-    Employee Jack = Employee("Jack",33,TypeOfEmployee::DEVELOPER);
+    Employee Jack = Employee("Jack",33);
     cout<<Jack.getName()<<" is "<<Jack.getAge()<<" old\n";
 
 
@@ -22,13 +30,13 @@ int main(){
     cout<<Job.getName()<<" is "<<Job.getAge()<<" old and he is a "<<Job.getProgLang()<<" programmer\n";
 
     Developer* PtrToJob = &Job;
+    Developer* testre = new Developer();
+    cout<<testre->getAge()<<'\n';
+    delete testre;
+    cout<<testre->getAge()<<'\n';
+
     cout<<PtrToJob->getName()<<'\n'; // same thing Job.getName() but only availabe with virual functions
     cout<<(*PtrToJob).getName()<<'\n'; // same as ->
-
-
-
-
-
 
     return 0;
 }

@@ -17,9 +17,11 @@ private:
     int age;
 public:
     Employee();
+    Employee(TypeOfEmployee type);
     Employee(string n, int a);
-    Employee(string n, int a, TypeOfEmployee type);
+    // virtual void createEmployee();
     virtual string getName();
     virtual int getAge();
+    //Employee* CreateEmployees(TypeOfEmployee); 
 };
 #endif
