@@ -1,10 +1,18 @@
 #include "employee.h"
 
-Employee::Employee(/* args */)
+Employee::Employee():name("defalut"), age(0) {}
+
+Employee::Employee(string n, int a)
 {
-    std::cout<<"Employee created\n";
+    name = n;
+    age = a;
+    cout<<"new employee\n";
 }
 
-Employee::~Employee()
-{
+
+string Employee::getName(){
+    return name;
 }
+int Employee::getAge(){
+    return age;
+ }

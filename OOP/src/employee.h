@@ -1,12 +1,16 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 class Employee
 {
 private:
-    std::string name;
+    string name;
     int age;
 public:
-    Employee(/* args */);
-    ~Employee();
+    Employee();
+    Employee(string n, int a);
+    string getName();
+    int getAge();
 };

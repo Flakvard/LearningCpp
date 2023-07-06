@@ -15,7 +15,7 @@ OBJS := $(SRC_files:%=$(BUILD_DIR)/%.o)
 
 # String substitution (suffix version without %).
 # Turns *.cpp.o files into dependencies into *.cpp.d files
-DEPs := $(OBJS:.o=.d)
+DEPS := $(OBJS:.o=.d)
 
 # Every folder in ./src will need to be passed to GCC so that it can find header files
 INC_DIRS := $(shell find $(SRC_DIRS) -type d)

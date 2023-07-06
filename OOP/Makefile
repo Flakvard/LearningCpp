@@ -1,7 +1,8 @@
 SRC = ./src/main.cpp ./src/factory.cpp ./src/employee.cpp ./src/developer.cpp ./src/teacher.cpp
-OBJ = ./build/main.o ./build/factory.o ./build/employee.o ./build/developer.o ./build/teacher.o
+OBJ = main.o factory.o employee.o developer.o teacher.o
 
 BIN = ./build/tester
+srcFolder := ./src/
 
 buildFolder = ./build
 
@@ -9,11 +10,12 @@ buildFolder = ./build
 all: $(BIN)
 
 $(BIN): $(OBJ)
-	g++ -Wall -Wextra $(OBJ) -o $(BIN)
+	g++ -o $@ $(OBJ) 
 
 $(OBJ): $(SRC)
-	g++ -Wall -Wextra -c $(SRC) 
-	mv *.o $(buildFolder)
+	g++ -Wall -Wextra -c $^
+
 
 clean:
-	rm -rf $(buildFolder)/*
+	rm -rf $(buildFolder)/*;
+	rm *.o;
