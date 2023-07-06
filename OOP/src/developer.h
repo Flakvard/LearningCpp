@@ -1,5 +1,6 @@
-#include "employee.h"
 #include <string>
+#include "employee.h"
+
 using namespace std;
 
 class Developer: public Employee
