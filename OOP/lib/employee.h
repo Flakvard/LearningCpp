@@ -1,3 +1,6 @@
+#ifndef EMPLOYEE_H
+#define EMPLOYEE_H
+
 #include <iostream>
 #include <string>
 
@@ -14,3 +17,4 @@ public:
     string getName();
     int getAge();
 };
+#endif

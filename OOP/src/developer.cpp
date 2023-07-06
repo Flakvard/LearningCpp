@@ -1,9 +1,9 @@
 #include "developer.h"
 
-Developer::Developer(string name, int age, string ProgramLang) : Employee(name, age)
-{
-    ProgrammingLanguage = ProgramLang;
-}
+Developer::Developer(string n, int a, string ProgramLang) :Employee(n, a){
+        ProgrammingLanguage = ProgramLang;
+    }
+
 
 string Developer::getProgLang(){
     return ProgrammingLanguage;

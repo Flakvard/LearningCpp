@@ -1,23 +1,29 @@
-SRC = ./src/main.cpp ./src/factory.cpp ./src/employee.cpp ./src/developer.cpp ./src/teacher.cpp
-OBJ = $(patsubst ./src/%.cpp, ./build/%.o, $(SRC))
+SRC = main.cpp factory.cpp employee.cpp developer.cpp teacher.cpp
+OBJ = $(patsubst %.cpp, $(buildFolder)/%.o, $(SRC))
 
 BIN = $(buildFolder)/tester
-
 srcFolder := ./src/
+headerFolder := ./lib/
 
 buildFolder = ./build
 
+VPATH = $(srcFolder)
+
+CPPFLAGS = -MMD -MP -I$(headerFolder)
+CXXFLAGS = -Wall -Wextra
+
 .PHONY: all clean
 all: $(BIN)
+	@echo
 
 $(BIN): $(OBJ)
-	g++ -o $@ $(OBJ) 
+	g++ -o $@ $(OBJ)
 
-./build/%.o: ./src/%.cpp
+-include $(OBJ:.o=.d)
+
+$(buildFolder)/%.o: %.cpp
 	@mkdir -p $(@D)
-	g++ -Wall -Wextra -c -o $@ $<
-
+	g++ $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 clean:
-	rm -rf $(buildFolder)/*;
-	rm *.o;
+	rm -rfv $(buildFolder)/*
