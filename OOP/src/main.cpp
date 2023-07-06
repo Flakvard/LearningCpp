@@ -21,6 +21,12 @@ int main(){
     Developer Job = Developer("Job",23,"C++");
     cout<<Job.getName()<<" is "<<Job.getAge()<<" old and he is a "<<Job.getProgLang()<<" programmer\n";
 
+    Developer* PtrToJob = &Job;
+    cout<<PtrToJob->getName()<<'\n'; // same thing Job.getName() but only availabe with virual functions
+    cout<<(*PtrToJob).getName()<<'\n'; // same as ->
+
+    
+
 
 
 

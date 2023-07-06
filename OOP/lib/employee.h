@@ -14,7 +14,7 @@ private:
 public:
     Employee();
     Employee(string n, int a);
-    string getName();
-    int getAge();
+    virtual string getName();
+    virtual int getAge();
 };
 #endif
