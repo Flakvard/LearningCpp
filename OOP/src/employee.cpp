@@ -1,8 +1,8 @@
 #include <employee.h>
 
-IEmployee::IEmployee():name("default"), age(0) {}
+AbstractEmployee::AbstractEmployee():name("default"), age(0) {}
 
-IEmployee::IEmployee(TypeOfEmployee type) :name("Default"), age(0) {
+AbstractEmployee::AbstractEmployee(TypeOfEmployee type) :name("Default"), age(0) {
     if (type == TypeOfEmployee::DEVELOPER)
     {
         cout<<"new Developer employee\n";
@@ -12,30 +12,30 @@ IEmployee::IEmployee(TypeOfEmployee type) :name("Default"), age(0) {
     }
         cout<<"New employee";
 }
-IEmployee::IEmployee(string n, int a)
+AbstractEmployee::AbstractEmployee(string n, int a)
 {
     name = n;
     age = a;
     cout<<"new employee\n";
 }
 
-string IEmployee::getName(){
+string AbstractEmployee::getName(){
     return name;
 }
-int IEmployee::getAge(){
+int AbstractEmployee::getAge(){
     return age;
  }
 
- void IEmployee::setName(string n){
+ void AbstractEmployee::setName(string n){
     name = n;
  }
 
- void IEmployee::setAge(int a){
+ void AbstractEmployee::setAge(int a){
     age = a;
  }
 
- IEmployee::~IEmployee()
+ AbstractEmployee::~AbstractEmployee()
  {
-    cout<<"Destructor for "<<IEmployee::getName()<<" employee called\n";
+    cout<<"Destructor for "<<AbstractEmployee::getName()<<" employee called\n";
     // delete this;
  }

@@ -9,7 +9,7 @@ class IEmployeeFactory{
 private:
     /* data */
 public:
-    virtual IEmployee* createEmployee() = 0;
+    virtual AbstractEmployee* createEmployee() = 0;
     virtual ~IEmployeeFactory() { cout<<"Employee Factory desctruct\n";}
 };
 
@@ -20,7 +20,7 @@ private:
 public:
     DeveloperFactory(/* args */);
     ~DeveloperFactory();
-    IEmployee* createEmployee() override;
+    AbstractEmployee* createEmployee() override;
 };
 
 class TeacherFactory : public IEmployeeFactory{
@@ -29,7 +29,7 @@ private:
 public:
     TeacherFactory(/* args */);
     ~TeacherFactory();
-    IEmployee* createEmployee() override;
+    AbstractEmployee* createEmployee() override;
 };
 
 

@@ -2,10 +2,10 @@
 
 Teacher::Teacher()
 {
-    IEmployee();
+    AbstractEmployee();
     teacherJob = "pending";
 }
-Teacher::Teacher(string n, int a, string job) : IEmployee(n, a)
+Teacher::Teacher(string n, int a, string job) : AbstractEmployee(n, a)
 {
     teacherJob = job;
 }

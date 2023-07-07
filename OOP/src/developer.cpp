@@ -1,10 +1,10 @@
 #include <developer.h>
 Developer::Developer(){
-    IEmployee();
+    AbstractEmployee();
     ProgrammingLanguage = "Pending";
 }
 
-Developer::Developer(string n, int a, string ProgramLang) :IEmployee(n, a){
+Developer::Developer(string n, int a, string ProgramLang) :AbstractEmployee(n, a){
         ProgrammingLanguage = ProgramLang;
     }
 

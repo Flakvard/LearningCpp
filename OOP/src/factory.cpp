@@ -3,13 +3,13 @@
 
 DeveloperFactory::DeveloperFactory(/* args */){}
 DeveloperFactory::~DeveloperFactory(){ cout<<"Developer Factory desctruct\n";}
-IEmployee* DeveloperFactory::createEmployee(){
+AbstractEmployee* DeveloperFactory::createEmployee(){
     return new Developer();
 }
 
 TeacherFactory::TeacherFactory(/* args */){}
 TeacherFactory::~TeacherFactory(){ cout<<"Teacher Factory desctruct\n";}
 
-IEmployee* TeacherFactory::createEmployee(){
+AbstractEmployee* TeacherFactory::createEmployee(){
     return new Teacher();
 }

@@ -5,7 +5,7 @@
 #include <employee.h>
 using namespace std;
 
-class Teacher : public IEmployee{
+class Teacher : public AbstractEmployee{
 private:
     string teacherJob;
 public:
@@ -13,7 +13,7 @@ public:
     Teacher(string name, int age, string job);
     string getJobName() override;
     void setJobName(string s) override;
-    void setProgLang(string s){}
-    string getProgLang(){}
+    virtual void setProgLang(string s){}
+    virtual string getProgLang(){};
 };
 #endif

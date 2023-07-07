@@ -9,16 +9,31 @@ using namespace std;
 enum class TypeOfEmployee {
     DEVELOPER,TEACHER
 };
-
 class IEmployee
+{
+private:
+    /* data */
+public:
+    virtual string getName() = 0;
+    virtual int getAge() = 0;
+    virtual void setName(string n) = 0;
+    virtual void setAge(int a) = 0;
+    virtual void setJobName(string s) = 0;
+    virtual void setProgLang(string s) = 0;
+    virtual string getJobName() = 0;
+    virtual string getProgLang() = 0;
+    virtual ~IEmployee(){cout<<"Destruct IEmployee\n";} 
+};
+
+class AbstractEmployee : public IEmployee
 {
 private:
     string name;
     int age;
 public:
-    IEmployee();
-    IEmployee(TypeOfEmployee type);
-    IEmployee(string n, int a);
+    AbstractEmployee();
+    AbstractEmployee(TypeOfEmployee type);
+    AbstractEmployee(string n, int a);
     virtual string getName();
     virtual int getAge();
     virtual void setName(string n);
@@ -27,6 +42,6 @@ public:
     virtual void setProgLang(string s){}
     virtual string getJobName(){}
     virtual string getProgLang(){}
-    virtual ~IEmployee();
+    virtual ~AbstractEmployee();
 };
 #endif

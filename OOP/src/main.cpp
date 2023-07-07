@@ -1,8 +1,6 @@
 #include <iostream>
 #include <string>
 #include <employee.h>
-#include <developer.h>
-#include <teacher.h>
 #include <factory.h>
 
 using namespace std;
@@ -33,9 +31,9 @@ int main(){
 
     // instanciate 
 
-    // IEmployee Bob = IEmployee("Bob",23);
+    // AbstractEmployee Bob = AbstractEmployee("Bob",23);
     // cout<<Bob.getName()<<" is "<<Bob.getAge()<<" old\n";
-    // IEmployee Jack = IEmployee("Jack",33);
+    // AbstractEmployee Jack = AbstractEmployee("Jack",33);
     // cout<<Jack.getName()<<" is "<<Jack.getAge()<<" old\n";
     // Teacher Hellen = Teacher("Hellen", 43, "History");
     // cout<<Hellen.getName()<<" is "<<Hellen.getAge()<<" old and she is a "<<Hellen.getJobName()<<" teacher\n";

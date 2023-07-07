@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class Developer: public IEmployee{
+class Developer: public AbstractEmployee{
 private:
     string ProgrammingLanguage;
 public:
@@ -15,7 +15,7 @@ public:
     virtual ~Developer();
     string getProgLang() override;
     void setProgLang(string s) override;
-    void setJobName(string s){}
-    string getJobName(){}
+    virtual void setJobName(string s){}
+    virtual string getJobName(){}
 };
 #endif
