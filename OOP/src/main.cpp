@@ -3,6 +3,7 @@
 #include "./employee.h"
 #include "./developer.h"
 #include "./teacher.h"
+#include "factory.h"
 
 using namespace std;
 
@@ -10,9 +11,16 @@ int main(){
     cout<<"Hello world\n";
     string hello = "Hello";
 
-    // Employee Creator;
     // Employee* TeacherCreator = Creator.CreateEmployees(3);
     // cout<<TeacherCreator->getJobName();
+
+    EmployeeFactory* TeacherCreator = new TeacherFactory();
+    Employee* Bobby = TeacherCreator->createEmployee();
+    Bobby->setName("Bobby");
+    Bobby->setAge(23);
+    cout<<Bobby->getName()<<" is "<<Bobby->getAge()<<" old\n";
+    delete TeacherCreator;
+    delete Bobby;
 
     // Employee DeveloperCreator = new DeveloperFactory();
     // Developer Jacky = DeveloperCreator.createDeveloper();

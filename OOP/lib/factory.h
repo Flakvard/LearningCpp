@@ -2,18 +2,35 @@
 #define FACTORY_H
 
 #include "employee.h"
+#include "developer.h"
+#include "teacher.h"
 
-class EmployeeFactory : public Employee
-{
+class EmployeeFactory{
 private:
     /* data */
 public:
-    EmployeeFactory(/* args */);
+    virtual Employee* createEmployee() = 0;
+    virtual ~EmployeeFactory() {}
 };
 
-EmployeeFactory::EmployeeFactory(/* args */)
-{
 
-}
+class DeveloperFactory : public EmployeeFactory{
+private:
+    /* data */
+public:
+    DeveloperFactory(/* args */);
+    ~DeveloperFactory();
+    Employee* createEmployee() override;
+};
+
+class TeacherFactory : public EmployeeFactory{
+private:
+    /* data */
+public:
+    TeacherFactory(/* args */);
+    ~TeacherFactory();
+    Employee* createEmployee() override;
+};
+
 
 #endif
