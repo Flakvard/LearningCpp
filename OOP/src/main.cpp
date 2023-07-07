@@ -8,17 +8,12 @@
 using namespace std;
 
 int main(){
-    cout<<"Hello world\n";
-    string hello = "Hello";
-
-    // Employee* TeacherCreator = Creator.CreateEmployees(3);
-    // cout<<TeacherCreator->getJobName();
 
     EmployeeFactory* TeacherCreator = new TeacherFactory();
-    Employee* Bobby = TeacherCreator->createEmployee();
+    Teacher* Bobby = dynamic_cast<Teacher*>(TeacherCreator->createEmployee());
     Bobby->setName("Bobby");
     Bobby->setAge(23);
-    cout<<Bobby->getName()<<" is "<<Bobby->getAge()<<" old\n";
+    cout<<Bobby->getName()<<" is "<<Bobby->getAge()<<" old and has a job "<<Bobby->getJobName()<<'\n';
     delete TeacherCreator;
     delete Bobby;
 
