@@ -1,15 +1,15 @@
-#include "factory.h"
+#include <factory.h>
 
 
 DeveloperFactory::DeveloperFactory(/* args */){}
 DeveloperFactory::~DeveloperFactory(){}
-Employee* DeveloperFactory::createEmployee(){
+IEmployee* DeveloperFactory::createEmployee(){
     return new Developer();
 }
 
 TeacherFactory::TeacherFactory(/* args */){}
 TeacherFactory::~TeacherFactory(){}
 
-Employee* TeacherFactory::createEmployee(){
+IEmployee* TeacherFactory::createEmployee(){
     return new Teacher();
 }

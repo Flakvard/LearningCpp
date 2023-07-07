@@ -2,15 +2,18 @@
 #define TEACHER_H
 
 #include <string>
-#include "employee.h"
+#include <employee.h>
 using namespace std;
 
-class Teacher : public Employee{
+class Teacher : public IEmployee{
 private:
     string teacherJob;
 public:
     Teacher();
     Teacher(string name, int age, string job);
-    string getJobName();
+    string getJobName(); //override;
+    // void setJobName(string s) override;
+    // virtual void setProgLang() = 0;
+    // virtual string getProgLang() = 0;
 };
 #endif

@@ -1,28 +1,37 @@
 #include <iostream>
 #include <string>
-#include "./employee.h"
-#include "./developer.h"
-#include "./teacher.h"
-#include "factory.h"
+#include <employee.h>
+#include <developer.h>
+#include <teacher.h>
+#include <factory.h>
 
 using namespace std;
 
 int main(){
 
-    EmployeeFactory* TeacherCreator = new TeacherFactory();
-    Teacher* Bobby = dynamic_cast<Teacher*>(TeacherCreator->createEmployee());
+    IEmployeeFactory* TeacherCreator = new TeacherFactory();
+    IEmployee* Bobby = TeacherCreator->createEmployee();
     Bobby->setName("Bobby");
     Bobby->setAge(23);
-    cout<<Bobby->getName()<<" is "<<Bobby->getAge()<<" old and has a job "<<Bobby->getJobName()<<'\n';
+    cout<<Bobby->getName()<<" is "<<Bobby->getAge()<<" old and has a job "<<'\n'; // Bobby->getJobName()<<'\n';
+
+    // Clean up
     delete TeacherCreator;
     delete Bobby;
 
-    // Employee DeveloperCreator = new DeveloperFactory();
-    // Developer Jacky = DeveloperCreator.createDeveloper();
+    IEmployeeFactory* DeveloperCreator = new DeveloperFactory();
+    Developer* Jacky = dynamic_cast<Developer*>(DeveloperCreator->createEmployee());
+    Jacky->setName("Jacky");
+    Jacky->setAge(33);
+    cout<<Jacky->getName()<<" is "<<Jacky->getAge()<<" old and programs in: "<<Jacky->getProgLang()<<'\n';
 
-    Employee Bob("Bob",23);
+    // Clean up
+    delete DeveloperCreator;
+    delete Jacky;
+
+    IEmployee Bob = IEmployee("Bob",23);
     cout<<Bob.getName()<<" is "<<Bob.getAge()<<" old\n";
-    Employee Jack = Employee("Jack",33);
+    IEmployee Jack = IEmployee("Jack",33);
     cout<<Jack.getName()<<" is "<<Jack.getAge()<<" old\n";
 
 

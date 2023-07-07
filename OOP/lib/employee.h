@@ -10,21 +10,23 @@ enum class TypeOfEmployee {
     DEVELOPER,TEACHER
 };
 
-class Employee
+class IEmployee
 {
 private:
     string name;
     int age;
 public:
-    Employee();
-    Employee(TypeOfEmployee type);
-    Employee(string n, int a);
-    // virtual void createEmployee();
+    IEmployee();
+    IEmployee(TypeOfEmployee type);
+    IEmployee(string n, int a);
     virtual string getName();
     virtual int getAge();
     virtual void setName(string n);
-    virtual void setAge(int a); 
-    //Employee* CreateEmployees(TypeOfEmployee); 
-    virtual ~Employee();
+    virtual void setAge(int a);
+    // virtual void setJobName(string s) = 0;
+    // virtual void setProgLang(string s) = 0;
+    // virtual string getJobName() = 0;
+    // virtual string getProgLang() = 0;
+    virtual ~IEmployee();
 };
 #endif
