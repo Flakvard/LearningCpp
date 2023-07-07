@@ -23,10 +23,10 @@ public:
     virtual int getAge();
     virtual void setName(string n);
     virtual void setAge(int a);
-    // virtual void setJobName(string s) = 0;
-    // virtual void setProgLang(string s) = 0;
-    // virtual string getJobName() = 0;
-    // virtual string getProgLang() = 0;
+    virtual void setJobName(string s){}
+    virtual void setProgLang(string s){}
+    virtual string getJobName(){}
+    virtual string getProgLang(){}
     virtual ~IEmployee();
 };
 #endif

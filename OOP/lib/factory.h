@@ -10,7 +10,7 @@ private:
     /* data */
 public:
     virtual IEmployee* createEmployee() = 0;
-    virtual ~IEmployeeFactory() {}
+    virtual ~IEmployeeFactory() { cout<<"Employee Factory desctruct\n";}
 };
 
 

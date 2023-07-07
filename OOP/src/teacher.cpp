@@ -13,4 +13,6 @@ string Teacher::getJobName(){
     return teacherJob;
 }
 
-// void Teacher::setJobName(string s) :teacherJob(s) {}
+void Teacher::setJobName(string s) {
+    teacherJob = s;
+}

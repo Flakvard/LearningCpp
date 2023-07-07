@@ -13,9 +13,9 @@ public:
     Developer();
     Developer(string n, int a, string ProgramLang);
     virtual ~Developer();
-    string getProgLang(); //override;
-    // void setProgLang(string s) override;
-    // virtual void setJobName(string s) = 0;
-    // virtual string getJobName() = 0;
+    string getProgLang() override;
+    void setProgLang(string s) override;
+    void setJobName(string s){}
+    string getJobName(){}
 };
 #endif

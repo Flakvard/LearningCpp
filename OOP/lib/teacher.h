@@ -11,9 +11,9 @@ private:
 public:
     Teacher();
     Teacher(string name, int age, string job);
-    string getJobName(); //override;
-    // void setJobName(string s) override;
-    // virtual void setProgLang() = 0;
-    // virtual string getProgLang() = 0;
+    string getJobName() override;
+    void setJobName(string s) override;
+    void setProgLang(string s){}
+    string getProgLang(){}
 };
 #endif

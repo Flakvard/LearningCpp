@@ -13,7 +13,10 @@ string Developer::getProgLang(){
     return ProgrammingLanguage;
 }
 
-// void Developer::setProgLang(string s) :ProgrammingLanguage(s){}
+void Developer::setProgLang(string s)
+{
+    ProgrammingLanguage = s;
+}
 
 Developer::~Developer()
 {
