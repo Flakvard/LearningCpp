@@ -20,3 +20,22 @@
     [x]  Polymorhpish:
             class IEmployee
             class IEmployeeFactory
+# Design Patterns 
+## Factory for employees
+Possible to add new type of employees and 
+inherit from abstract employee class. 
+Right now there are Teacher, Developers
+that you can inherit from AbstractEmployee class 
+
+## Abstract Factory 
+Report builder 
+
+
+## Builder for employees, Teachers and Developers
+A class that does the building/construction for 
+Teachers and Developers. 
+
+
+## Singleton 
+Implement at singleton class and namespace
+as a global variable for the program. 
