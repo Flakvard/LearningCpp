@@ -2,34 +2,69 @@
 #include <string>
 #include <employee.h>
 #include <factory.h>
+#include <builder.h>
 
 using namespace std;
 
 int main(){
 
+    // Create the Teacher Factory
     IEmployeeFactory* TeacherCreator = new TeacherFactory();
-    IEmployee* Bobby = TeacherCreator->createEmployee();
-    Bobby->setName("Bobby");
-    Bobby->setAge(23);
-    Bobby->setJobName("History");
-    cout<<Bobby->getName()<<" is "<<Bobby->getAge()<<" old and has a job in "<<Bobby->getJobName()<<'\n';
-
-    // Clean up
-    delete TeacherCreator;
-    delete Bobby;
+    IEmployeeBuilder* BuildTeacher = TeacherCreator->createBuilder();
+    BuildTeacher->setName("Bobby");
+    BuildTeacher->setAge(23);
+    BuildTeacher->setJobName("History");
+    IEmployee* Bobby = BuildTeacher->build();
+    Bobby->displayInfo();
 
     IEmployeeFactory* DeveloperCreator = new DeveloperFactory();
-    Developer* Jacky = dynamic_cast<Developer*>(DeveloperCreator->createEmployee());
-    Jacky->setName("Jacky");
-    Jacky->setAge(33);
-    Jacky->setProgLang("C++");
-    cout<<Jacky->getName()<<" is "<<Jacky->getAge()<<" old and programs in: "<<Jacky->getProgLang()<<'\n';
+    IEmployeeBuilder* BuildDeveloper = DeveloperCreator->createBuilder();
+    BuildDeveloper->setName("Jacky");
+    BuildDeveloper->setAge(33);
+    BuildDeveloper->setProgLang("C++");
+    IEmployee* Jacky = BuildDeveloper->build();
+    Jacky->displayInfo();
 
     // Clean up
-    delete DeveloperCreator;
-    delete Jacky;
+    delete Bobby;
+    delete TeacherCreator;
+    delete BuildTeacher;
 
-    // instanciate 
+    delete Jacky;
+    delete DeveloperCreator;
+    delete BuildDeveloper;
+
+    /************************************************************************************************/
+    // COMMENTED OUT
+    // OLD way to initialize classes via factory
+
+    // IEmployeeFactory* TeacherCreator = new TeacherFactory();
+    // IEmployee* Bobby = TeacherCreator->createEmployee();
+    // Bobby->setName("Bobby");
+    // Bobby->setAge(23);
+    // Bobby->setJobName("History");
+    // cout<<Bobby->getName()<<" is "<<Bobby->getAge()<<" old and has a job in "<<Bobby->getJobName()<<'\n';
+
+    // Clean up
+    // delete Bobby;
+    // delete TeacherCreator;
+
+    // IEmployeeFactory* DeveloperCreator = new DeveloperFactory();
+    // Developer* Jacky = dynamic_cast<Developer*>(DeveloperCreator->createEmployee());
+    // Jacky->setName("Jacky");
+    // Jacky->setAge(33);
+    // Jacky->setProgLang("C++");
+    // Jacky->displayInfo();
+    // cout<<Jacky->getName()<<" is "<<Jacky->getAge()<<" old and programs in: "<<Jacky->getProgLang()<<'\n';
+
+    // Clean up
+    // delete DeveloperCreator;
+    // delete Jacky;
+
+
+    /************************************************************************************************/
+    // COMMENTED OUT
+    // OLD way to initialize simple classes, employee, teacher and developers 
 
     // AbstractEmployee Bob = AbstractEmployee("Bob",23);
     // cout<<Bob.getName()<<" is "<<Bob.getAge()<<" old\n";

@@ -4,12 +4,13 @@
 #include <employee.h>
 #include <developer.h>
 #include <teacher.h>
+#include <builder.h>
 
 class IEmployeeFactory{
 private:
     /* data */
 public:
-    virtual AbstractEmployee* createEmployee() = 0;
+    virtual IEmployeeBuilder* createBuilder() = 0;
     virtual ~IEmployeeFactory() { cout<<"Employee Factory desctruct\n";}
 };
 
@@ -20,7 +21,7 @@ private:
 public:
     DeveloperFactory(/* args */);
     ~DeveloperFactory();
-    AbstractEmployee* createEmployee() override;
+    IEmployeeBuilder* createBuilder() override;
 };
 
 class TeacherFactory : public IEmployeeFactory{
@@ -29,7 +30,7 @@ private:
 public:
     TeacherFactory(/* args */);
     ~TeacherFactory();
-    AbstractEmployee* createEmployee() override;
+    IEmployeeBuilder* createBuilder() override;
 };
 
 

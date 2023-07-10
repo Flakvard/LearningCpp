@@ -17,5 +17,6 @@ public:
     void setProgLang(string s) override;
     virtual void setJobName(string s){}
     virtual string getJobName(){}
+    virtual void displayInfo() override {cout<<getName()<<" is "<<getAge()<<" old and programs in: "<<getProgLang()<<'\n';}
 };
 #endif
