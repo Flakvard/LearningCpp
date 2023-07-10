@@ -27,7 +27,7 @@ private:
     IEmployee* dev;
 public:
     DeveloperBuilder(/* args */);
-    ~DeveloperBuilder();
+    ~DeveloperBuilder(){}
     void setName(string n) override;
     void setAge(int a) override;
     void setJobName(string s) override;
@@ -42,7 +42,7 @@ private:
     IEmployee* Teach;
 public:
     TeacherBuilder(/* args */);
-    ~TeacherBuilder();
+    ~TeacherBuilder(){}
     void setName(string n) override;
     void setAge(int a) override;
     void setJobName(string s) override;

@@ -11,7 +11,7 @@ private:
     /* data */
 public:
     virtual IEmployeeBuilder* createBuilder() = 0;
-    virtual ~IEmployeeFactory() { cout<<"Employee Factory desctruct\n";}
+    virtual ~IEmployeeFactory() {}
 };
 
 
@@ -20,7 +20,7 @@ private:
     /* data */
 public:
     DeveloperFactory(/* args */);
-    ~DeveloperFactory();
+    ~DeveloperFactory(){}
     IEmployeeBuilder* createBuilder() override;
 };
 
@@ -29,7 +29,7 @@ private:
     /* data */
 public:
     TeacherFactory(/* args */);
-    ~TeacherFactory();
+    ~TeacherFactory(){}
     IEmployeeBuilder* createBuilder() override;
 };
 

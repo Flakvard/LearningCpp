@@ -17,9 +17,3 @@ void Developer::setProgLang(string s)
 {
     ProgrammingLanguage = s;
 }
-
-Developer::~Developer()
-{
-    cout<<"Destructor for dev called\n";
-    //delete this;
-}

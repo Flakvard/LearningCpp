@@ -12,7 +12,7 @@ private:
 public:
     Developer();
     Developer(string n, int a, string ProgramLang);
-    virtual ~Developer();
+    virtual ~Developer(){}
     string getProgLang() override;
     void setProgLang(string s) override;
     virtual void setJobName(string s){}

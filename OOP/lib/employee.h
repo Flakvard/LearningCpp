@@ -23,7 +23,7 @@ public:
     virtual string getJobName() = 0;
     virtual string getProgLang() = 0;
     virtual void displayInfo() = 0;
-    virtual ~IEmployee(){cout<<"Destruct IEmployee\n";} 
+    virtual ~IEmployee(){} 
 };
 
 class AbstractEmployee : public IEmployee
@@ -43,8 +43,7 @@ public:
     virtual void setProgLang(string s){}
     virtual string getJobName(){}
     virtual string getProgLang(){}
-    virtual void displayInfo() override {cout<<name<<" is "<<age<<" old. This is a standard Employee"<<'\n';
- }
-    virtual ~AbstractEmployee();
+    virtual void displayInfo() override {cout<<name<<" is "<<age<<" old. This is a standard Employee"<<'\n';}
+    virtual ~AbstractEmployee(){}
 };
 #endif

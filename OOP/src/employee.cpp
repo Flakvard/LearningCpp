@@ -34,8 +34,3 @@ int AbstractEmployee::getAge(){
     age = a;
  }
 
- AbstractEmployee::~AbstractEmployee()
- {
-    cout<<"Destructor for "<<AbstractEmployee::getName()<<" employee called\n";
-    // delete this;
- }

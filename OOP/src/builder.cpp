@@ -7,11 +7,6 @@ DeveloperBuilder::DeveloperBuilder(/* args */)
     dev = new Developer();
 }
 
-DeveloperBuilder::~DeveloperBuilder()
-{
-    cout<<"Destruct DeveloperBuilder\n";
-}
-
 void DeveloperBuilder::setName(string n){
     dev->setName(n);
 }
@@ -39,11 +34,6 @@ IEmployee* DeveloperBuilder::build()
 TeacherBuilder::TeacherBuilder(/* args */)
 {
     Teach = new Teacher();
-}
-
-TeacherBuilder::~TeacherBuilder()
-{
-    cout<<"Destruct TeacherBuilder\n";
 }
 
 void TeacherBuilder::setName(string n){
