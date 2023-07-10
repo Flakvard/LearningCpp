@@ -1,4 +1,4 @@
-SRC = main.cpp factory.cpp employee.cpp developer.cpp teacher.cpp builder.cpp
+SRC = main.cpp factory.cpp employee.cpp developer.cpp teacher.cpp builder.cpp director.cpp
 OBJ = $(patsubst %.cpp, $(buildFolder)/%.o, $(SRC))
 
 BIN = $(buildFolder)/tester

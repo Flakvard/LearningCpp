@@ -3,12 +3,13 @@
 #include <employee.h>
 #include <factory.h>
 #include <builder.h>
+#include <director.h>
 
 using namespace std;
 
 int main(){
 
-    // Create the Teacher Factory
+    // Create the Teacher Factory and Teacher Builder 
     IEmployeeFactory* TeacherCreator = new TeacherFactory();
     IEmployeeBuilder* BuildTeacher = TeacherCreator->createBuilder();
     BuildTeacher->setName("Bobby");
@@ -16,6 +17,14 @@ int main(){
     BuildTeacher->setJobName("History");
     IEmployee* Bobby = BuildTeacher->build();
     Bobby->displayInfo();
+
+    // Create the Teacher Factory and Teacher Builder for directors
+    IEmployeeFactory* TeacherBobbyCreator = new TeacherFactory();
+    IEmployeeBuilder* BuildBobbyTeacher = TeacherBobbyCreator->createBuilder();
+    // Create Director  
+    EmployeeDirector* BobbyTeachers = new EmployeeDirector();
+    IEmployee* Bobby2 = BobbyTeachers->buildBobbyDeveloper(BuildBobbyTeacher);
+    Bobby2->displayInfo();
 
     IEmployeeFactory* DeveloperCreator = new DeveloperFactory();
     IEmployeeBuilder* BuildDeveloper = DeveloperCreator->createBuilder();
@@ -30,9 +39,15 @@ int main(){
     delete TeacherCreator;
     delete BuildTeacher;
 
+    delete Bobby2;
+    delete BobbyTeachers; // Director for all Bobbys
+    delete TeacherBobbyCreator; // Factory for bobby
+    delete BuildBobbyTeacher; // builder for bobby
+
     delete Jacky;
     delete DeveloperCreator;
     delete BuildDeveloper;
+
 
     /************************************************************************************************/
     // COMMENTED OUT
