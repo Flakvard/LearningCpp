@@ -27,7 +27,9 @@ void DeveloperBuilder::setProgLang(string s)
 
 IEmployee* DeveloperBuilder::build()
 {
-    return dev;
+    IEmployee* builtDeveloper = dev;
+    dev = new Developer(); // Create a new instance for the next build
+    return builtDeveloper;
 }
 
 
@@ -56,5 +58,7 @@ void TeacherBuilder::setProgLang(string s)
 
 IEmployee* TeacherBuilder::build()
 {
-    return Teach;
+    IEmployee* builtTeacher = Teach;
+    Teach = new Teacher(); // Create a new instance for the next build
+    return builtTeacher;
 }

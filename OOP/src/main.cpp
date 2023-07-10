@@ -18,12 +18,16 @@ int main(){
     IEmployee* Bobby = BuildTeacher->build();
     Bobby->displayInfo(); // output: Bobby is 23 old and has a job in History
 
-    // Create the Teacher Factory and Teacher Builder for directors
-    IEmployeeFactory* TeacherBobbyCreator = new TeacherFactory();
-    IEmployeeBuilder* BuildBobbyTeacher = TeacherBobbyCreator->createBuilder();
+    BuildTeacher->setName("Timmy");
+    BuildTeacher->setAge(26);
+    BuildTeacher->setJobName("Computer Science");
+    IEmployee* Timmy = BuildTeacher->build();
+    Timmy->displayInfo(); // output: Timmy is 26 old and has a job in Computer Science
+    Bobby->displayInfo(); // output: Bobby is 23 old and has a job in History
+
     // Create Director  
     EmployeeDirector* BobbyTeachers = new EmployeeDirector();
-    IEmployee* Bobby2 = BobbyTeachers->buildBobbyDeveloper(BuildBobbyTeacher);
+    IEmployee* Bobby2 = BobbyTeachers->buildBobbyDeveloper(BuildTeacher);
     Bobby2->displayInfo(); // output: Bobby 2 is 25 old and has a job in Math
 
     IEmployeeFactory* DeveloperCreator = new DeveloperFactory();
@@ -41,8 +45,6 @@ int main(){
 
     delete Bobby2;
     delete BobbyTeachers; // Director for all Bobbys
-    delete TeacherBobbyCreator; // Factory for bobby
-    delete BuildBobbyTeacher; // builder for bobby
 
     delete Jacky;
     delete DeveloperCreator;

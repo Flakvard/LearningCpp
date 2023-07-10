@@ -57,6 +57,7 @@ The main function creates different employees using factories and builders.
 - The builder is used to set the desired attributes of the employee, such as name, age, and job name, using the setter methods.
 - The build() method is called on the builder to create the IEmployee* Bobby object.
 - Finally, Bobby->displayInfo() is called to display the information of the teacher employee.
+- this is done again with Timmy using the same builder and factory.
 ```c++
     // Create the Teacher Factory and Teacher Builder 
     IEmployeeFactory* TeacherCreator = new TeacherFactory();
@@ -66,20 +67,24 @@ The main function creates different employees using factories and builders.
     BuildTeacher->setJobName("History");
     IEmployee* Bobby = BuildTeacher->build();
     Bobby->displayInfo(); // output: Bobby is 23 old and has a job in History
+
+    BuildTeacher->setName("Timmy");
+    BuildTeacher->setAge(26);
+    BuildTeacher->setJobName("Computer Science");
+    IEmployee* Timmy = BuildTeacher->build();
+    Timmy->displayInfo(); // output: Timmy is 26 old and has a job in Computer Science
+    Bobby->displayInfo(); // output: Bobby is 23 old and has a job in History
+
 ```
 ## Creating a Teacher Employee with Director:
-- Another TeacherFactory and TeacherBuilder are created.
 - An EmployeeDirector named BobbyTeachers is created to simplify the creation process.
-- The buildBobbyDeveloper method of the BobbyTeachers director is called, passing the BuildBobbyTeacher builder.
+- The buildBobbyDeveloper method of the BobbyTeachers director is called, passing the BuildTeacher builder from eariler.
 - The director takes the builder and sets additional attributes to create a specific kind of employee.
 - The resulting IEmployee* Bobby2 object is displayed using Bobby2->displayInfo().
 ```c++
-    // Create the Teacher Factory and Teacher Builder for directors
-    IEmployeeFactory* TeacherBobbyCreator = new TeacherFactory();
-    IEmployeeBuilder* BuildBobbyTeacher = TeacherBobbyCreator->createBuilder();
-    // Create Director  
+// Create Director  
     EmployeeDirector* BobbyTeachers = new EmployeeDirector();
-    IEmployee* Bobby2 = BobbyTeachers->buildBobbyDeveloper(BuildBobbyTeacher);
+    IEmployee* Bobby2 = BobbyTeachers->buildBobbyDeveloper(BuildTeacher);
     Bobby2->displayInfo(); // output: Bobby 2 is 25 old and has a job in Math
 ```
 
@@ -106,9 +111,7 @@ All the dynamically allocated objects are deleted to free the memory.
     delete BuildTeacher;
 
     delete Bobby2;
-    delete BobbyTeachers; // Director for all Bobbys
-    delete TeacherBobbyCreator; // Factory for bobby
-    delete BuildBobbyTeacher; // builder for bobby
+    delete BobbyTeachers; // Director for all Bobbys builders
 
     delete Jacky;
     delete DeveloperCreator;
