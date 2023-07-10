@@ -16,7 +16,7 @@ int main(){
     BuildTeacher->setAge(23);
     BuildTeacher->setJobName("History");
     IEmployee* Bobby = BuildTeacher->build();
-    Bobby->displayInfo();
+    Bobby->displayInfo(); // output: Bobby is 23 old and has a job in History
 
     // Create the Teacher Factory and Teacher Builder for directors
     IEmployeeFactory* TeacherBobbyCreator = new TeacherFactory();
@@ -24,7 +24,7 @@ int main(){
     // Create Director  
     EmployeeDirector* BobbyTeachers = new EmployeeDirector();
     IEmployee* Bobby2 = BobbyTeachers->buildBobbyDeveloper(BuildBobbyTeacher);
-    Bobby2->displayInfo();
+    Bobby2->displayInfo(); // output: Bobby 2 is 25 old and has a job in Math
 
     IEmployeeFactory* DeveloperCreator = new DeveloperFactory();
     IEmployeeBuilder* BuildDeveloper = DeveloperCreator->createBuilder();
@@ -32,7 +32,7 @@ int main(){
     BuildDeveloper->setAge(33);
     BuildDeveloper->setProgLang("C++");
     IEmployee* Jacky = BuildDeveloper->build();
-    Jacky->displayInfo();
+    Jacky->displayInfo(); // output: Jacky is 33 old and programs in: C++
 
     // Clean up
     delete Bobby;
