@@ -42,6 +42,7 @@ int main(){
     delete Bobby;
     delete TeacherCreator;
     delete BuildTeacher;
+    delete Timmy;
 
     delete Bobby2;
     delete BobbyTeachers; // Director for all Bobbys

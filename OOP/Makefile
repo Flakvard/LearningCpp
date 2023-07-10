@@ -10,14 +10,14 @@ buildFolder = ./build
 VPATH = $(srcFolder)
 
 CPPFLAGS = -MMD -MP -I$(headerFolder)
-CXXFLAGS = -Wall -Wextra
+CXXFLAGS = -g -Wall -Wextra
 
 .PHONY: all clean
 all: $(BIN)
 	@echo
 
 $(BIN): $(OBJ)
-	g++ -o $@ $(OBJ)
+	g++ -g -o $@ $(OBJ)
 
 -include $(OBJ:.o=.d)
 
