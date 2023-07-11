@@ -43,8 +43,7 @@ Does not make intiuative sense in this regard, but it works.
 IEmployee* buildBobbyDeveloper(IEmployeeBuilder* teach);
 
 ## Singleton 
-Implement at singleton class and namespace
-as a global variable for the program. 
+Implement at singleton class for factory. 
 Not yet implemented
 
 # Here's a breakdown of what's happening:
