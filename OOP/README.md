@@ -44,7 +44,8 @@ IEmployee* buildBobbyDeveloper(IEmployeeBuilder* teach);
 
 ## Singleton 
 Implement at singleton class for factory. 
-Not yet implemented
+DeveloperFactory singelton implemented.
+TeacherFactory singelton implemented.
 
 # Here's a breakdown of what's happening:
 The main function creates different employees using factories and builders. 

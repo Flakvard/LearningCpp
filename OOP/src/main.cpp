@@ -42,7 +42,7 @@ int main(){
 
     // Clean up
     delete Bobby;
-    delete TeacherCreator;
+    //delete TeacherCreator;
     delete BuildTeacher;
     delete Timmy;
 
@@ -50,7 +50,7 @@ int main(){
     delete BobbyTeachers; // Director for all Bobbys
 
     delete Jacky;
-    delete DeveloperCreator;
+    //delete DeveloperCreator;
     delete BuildDeveloper;
 
 
