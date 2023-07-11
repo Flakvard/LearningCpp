@@ -17,20 +17,21 @@ public:
 
 class DeveloperFactory : public IEmployeeFactory{
 private:
-    /* data */
-public:
     DeveloperFactory(/* args */);
+public:
     ~DeveloperFactory(){}
     IEmployeeBuilder* createBuilder() override;
+    static DeveloperFactory* getInstance();
 };
 
 class TeacherFactory : public IEmployeeFactory{
 private:
     /* data */
-public:
     TeacherFactory(/* args */);
+public:
     ~TeacherFactory(){}
     IEmployeeBuilder* createBuilder() override;
+    static TeacherFactory* getInstance();
 };
 
 

@@ -10,7 +10,9 @@ using namespace std;
 int main(){
 
     // Create the Teacher Factory and Teacher Builder 
-    IEmployeeFactory* TeacherCreator = new TeacherFactory();
+    //IEmployeeFactory* TeacherCreator = new TeacherFactory();
+    IEmployeeFactory* TeacherCreator = TeacherFactory::getInstance();
+
     IEmployeeBuilder* BuildTeacher = TeacherCreator->createBuilder();
     BuildTeacher->setName("Bobby");
     BuildTeacher->setAge(23);
@@ -30,7 +32,7 @@ int main(){
     IEmployee* Bobby2 = BobbyTeachers->buildBobbyDeveloper(BuildTeacher);
     Bobby2->displayInfo(); // output: Bobby 2 is 25 old and has a job in Math
 
-    IEmployeeFactory* DeveloperCreator = new DeveloperFactory();
+    IEmployeeFactory* DeveloperCreator = DeveloperFactory::getInstance();
     IEmployeeBuilder* BuildDeveloper = DeveloperCreator->createBuilder();
     BuildDeveloper->setName("Jacky");
     BuildDeveloper->setAge(33);
