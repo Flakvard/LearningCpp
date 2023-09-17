@@ -26,6 +26,30 @@ int main(){
     // std::cout<<"assert done\n";
     appendStr(word, '!');
     printStr(word);
+
+    // passing null values
+    arrayString james = new char[0];
+    // james has to have a 0 in the end of the text, otherwise it wont work
+    james[0]=0;
+    appendStr(james, 'j');
+    appendStr(james, 'a');
+    appendStr(james, 'm');
+    appendStr(james, 'e');
+    appendStr(james, 's');
+    printStr(james);
+
+    // appending with for loop from char array 
+    arrayString darkness = new char[1];
+    darkness[0]=0;
+    char hello[] = "hello darkness my old frien";
+    for (size_t i = 0; i < 28; i++){
+        appendStr(darkness,hello[i]);
+    }
+    // darkness[28]
+    appendStr(darkness,'d');
+    printStr(darkness);
+    
+    
 }
 
 
