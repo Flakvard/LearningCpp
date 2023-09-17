@@ -19,34 +19,49 @@ int main(){
     word[3]='t'; 
     word[4]=0; 
     printStr(word);
-    
     // delete[] word;
     // std::cout<<"word deleted\n";
 
     // assert( (2+2==4) && "expect");
     // std::cout<<"assert done\n";
     appendStr(word, '!');
+    printStr(word);
 }
 
 
 void appendStr(arrayString &str, char letter){
 
     // count str lenght
+    // fx. test0 == 4 lenght
     int count = 0;
-    while (str[count]!=0) ++count;
+    while (str[count]!=0) 
+        ++count;
     
     // increase string with the new letter + 1 for count
+    // fx. test!0 == 4+2
     arrayString newStr = new char[count+2];
 
     // copy over old str to newStr and add letter
-    for (int i = 0; i < count; i++)
-    {
+    // stops a letter 'count' which should be the NULL char
+    // fx. test0 == 4 and stops at test == 3 
+    for (int i = 0; i < count; i++) 
         newStr[i]=str[i];
-    }
-    newStr[count+1]=letter;
-    newStr[count+2]=0;
-    printStr(newStr);
-    delete[] newStr;
+
+    // append char to word
+    // fx. count == 4
+    // test == 3 
+    // test! == 4 
+    newStr[count]=letter;
+    // append NUll char to word
+    // fx. count+1 == 5
+    // test! == 4 
+    // test!0 == 5 
+    newStr[count+1]=0;
+
+    // delete old str in heap, but not the pointer
+    delete[] str;
+    // assign the old pointer to the new word in heap
+    str = newStr;
 }
 
 void printStr(const arrayString &str){
