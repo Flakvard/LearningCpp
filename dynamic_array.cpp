@@ -18,11 +18,14 @@ int main(){
     word[3]='t'; 
     word[4]=0; 
 
-    for (size_t i = 0; i < 5; i++)
+    int i = 0;
+    while (word[i]!=0)
     {
         std::cout<<word[i];
+        ++i;
     }
-    std::cout<<"\nend\n";
+    
+    std::cout<<"\nword count: "<<i<<'\n';
     delete[] word;
     std::cout<<"word deleted\n";
        // append to string
