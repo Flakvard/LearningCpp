@@ -15,30 +15,23 @@ void printStudentCollection(studentCollection sc);
 int main() {
 
     studentCollection sc;
-    //sc->next = 0;
     studentNode * james = createStudent("James", 12);
     studentNode * fred = createStudent("Fred", 10);
     studentNode * jeff = createStudent("Jeff", 02);
     studentNode * bob = createStudent("Bob", 7);
-    sc->next = james;
-    james->next = fred;
-    fred->next = jeff;
+    linkStudent(sc, james);
+    linkStudent(sc, fred);
+    linkStudent(sc, jeff);
     linkStudent(sc, bob);
-    // linkStudent(sc, james);
-    // linkStudent(sc, fred);
-    // linkStudent(sc, jeff);
     printStudentCollection(sc);
 
 }
 void printStudentCollection(studentCollection sc){
     studentNode * loopPtr = sc;
-    if(loopPtr->next == NULL) return;
 
-    while (loopPtr->next != NULL)
-    {
-        std::cout<<loopPtr->next->studentName<<'\n';
+    while (loopPtr->next != NULL){
+        std::cout<<loopPtr->next->studentName<<'\t';
         std::cout<<loopPtr->next->studentGrade<<'\n';
-        std::cout<<'\n';
         loopPtr = loopPtr->next;
     }
 
@@ -59,6 +52,5 @@ void linkStudent(studentCollection sc, studentNode *student){
     sc->next = student;
 
     student = NULL;
-
-
 }
+
