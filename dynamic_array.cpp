@@ -5,6 +5,7 @@ typedef char* arrayString;
 
 void printStr(const arrayString &str);
 void appendStr(arrayString &str, char letter);
+arrayString catStr(arrayString s1, arrayString s2);
 
 int main(){
 
@@ -48,8 +49,36 @@ int main(){
     // darkness[28]
     appendStr(darkness,'d');
     printStr(darkness);
+    arrayString jam_dark = catStr(james, darkness);
+    arrayString jam_dark_rev = catStr(darkness, james);
+
+    printStr(jam_dark);
+    printStr(jam_dark_rev);
+}
+
+arrayString catStr(arrayString s1, arrayString s2){
+    int count_s1 = 0;
+    while (s1[count_s1] != 0)
+    {
+        ++count_s1;
+    }
+    int count_s2 = 0;
+    while (s2[count_s2] != 0)
+    {
+        ++count_s2;
+    }
+    arrayString strCat = new char[count_s1+count_s2];
+    for (int i = 0; i < count_s1; i++)
+    {
+        strCat[i] = s1[i];
+    }
     
-    
+    for (int i = 0; i < count_s2; i++)
+    {
+        strCat[count_s1+i] = s2[i];
+    }
+    return strCat;
+
 }
 
 
