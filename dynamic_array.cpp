@@ -20,11 +20,7 @@ int main(){
     word[3]='t'; 
     word[4]=0; 
     printStr(word);
-    // delete[] word;
-    // std::cout<<"word deleted\n";
 
-    // assert( (2+2==4) && "expect");
-    // std::cout<<"assert done\n";
     appendStr(word, '!');
     printStr(word);
 
@@ -54,29 +50,52 @@ int main(){
 
     printStr(jam_dark);
     printStr(jam_dark_rev);
+
+    // cleanup memory allocation;
+    delete[] word;
+    delete[] james;
+    delete[] darkness;
+    delete[] jam_dark;
+    delete[] jam_dark_rev;
+
+    // cleanup dangling reference;
+    word = 0;
+    james = 0;
+    darkness = 0;
+    jam_dark = 0;
+    jam_dark_rev = 0;
+
+}
+int lenghtStr(arrayString s){
+    int count = 0;
+    while (s[count] != 0){
+        ++count;
+    }
+    return count;
 }
 
 arrayString catStr(arrayString s1, arrayString s2){
+    // lenght of first str
     int count_s1 = 0;
-    while (s1[count_s1] != 0)
-    {
-        ++count_s1;
-    }
+    count_s1 = lenghtStr(s1);
+
+    // lenght of second str
     int count_s2 = 0;
-    while (s2[count_s2] != 0)
-    {
-        ++count_s2;
-    }
+    count_s2 = lenghtStr(s2);
+
+    // allocate length of both str
     arrayString strCat = new char[count_s1+count_s2];
+    // insert first str
     for (int i = 0; i < count_s1; i++)
     {
         strCat[i] = s1[i];
     }
-    
+    // insert second str (start from lenght of first str)
     for (int i = 0; i < count_s2; i++)
     {
         strCat[count_s1+i] = s2[i];
     }
+    // return
     return strCat;
 
 }
@@ -87,8 +106,7 @@ void appendStr(arrayString &str, char letter){
     // count str lenght
     // fx. test0 == 4 lenght
     int count = 0;
-    while (str[count]!=0) 
-        ++count;
+    count = lenghtStr(str);
     
     // increase string with the new letter + 1 for count
     // fx. test!0 == 4+2
