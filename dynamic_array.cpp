@@ -7,7 +7,7 @@ void printStr(const arrayString &str);
 void appendStr(arrayString &str, char letter);
 arrayString catStr(arrayString s1, arrayString s2);
 int lenghtStr(arrayString s);
-arrayString subString(arrayString str, int startPos, int endPos);
+arrayString subString(const arrayString str, int startPos, int endPos);
 
 int main(){
 
@@ -42,6 +42,17 @@ int main(){
 
     printStr(jam_dark);
     printStr(jam_dark_rev);
+
+    // Testing subString funciton
+    arrayString abcdefg = new char[1];
+    abcdefg[0]=0;
+    char testing[] = "abcdefg";
+    for (size_t i = 0; i < 7; i++){
+        appendStr(abcdefg,testing[i]);
+    }
+    printStr(abcdefg);
+    arrayString cdef = subString(abcdefg,3,4);
+    printStr(cdef);
     // arrayString hello = subString(darkness, 1,6); // "hello "
     // arrayString oldFriend = subString(darkness, 9,28); // " my old friend"
     // arrayString helloJames = catStr(hello, james);
@@ -67,13 +78,16 @@ int main(){
 
 }
 
-arrayString subString(arrayString str, int startPos, int endPos){
+arrayString subString(const arrayString str, int startPos, int endPos){
     int count = 0;
-    arrayString subStr;
     count = lenghtStr(str);
-
-
-
+    // create a substring that is large enough to fit start to finish
+    arrayString subStr = new char[startPos+endPos-1];
+    for (int i = 0; i < endPos; i++){
+        // starPos - 1 because it starts at 0 
+        subStr[i] = str[startPos-1+i];
+    }
+    return subStr;
 }
 
 int lenghtStr(arrayString s){
