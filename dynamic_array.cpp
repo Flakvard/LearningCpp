@@ -6,6 +6,8 @@ typedef char* arrayString;
 void printStr(const arrayString &str);
 void appendStr(arrayString &str, char letter);
 arrayString catStr(arrayString s1, arrayString s2);
+int lenghtStr(arrayString s);
+arrayString subString(arrayString str, int startPos, int endPos);
 
 int main(){
 
@@ -14,13 +16,8 @@ int main(){
 
     arrayString word = new char[5];
 
-    word[0]='t'; 
-    word[1]='e'; 
-    word[2]='s'; 
-    word[3]='t'; 
-    word[4]=0; 
+    word[0]='t';word[1]='e';word[2]='s';word[3]='t';word[4]=0; 
     printStr(word);
-
     appendStr(word, '!');
     printStr(word);
 
@@ -28,44 +25,57 @@ int main(){
     arrayString james = new char[0];
     // james has to have a 0 in the end of the text, otherwise it wont work
     james[0]=0;
-    appendStr(james, 'j');
-    appendStr(james, 'a');
-    appendStr(james, 'm');
-    appendStr(james, 'e');
-    appendStr(james, 's');
+    appendStr(james, 'j');appendStr(james, 'a');appendStr(james, 'm');appendStr(james, 'e');appendStr(james, 's');
     printStr(james);
 
     // appending with for loop from char array 
     arrayString darkness = new char[1];
     darkness[0]=0;
-    char hello[] = "hello darkness my old frien";
+    // darkness[28]
+    char hello[] = "hello darkness my old friend";
     for (size_t i = 0; i < 28; i++){
         appendStr(darkness,hello[i]);
     }
-    // darkness[28]
-    appendStr(darkness,'d');
     printStr(darkness);
     arrayString jam_dark = catStr(james, darkness);
     arrayString jam_dark_rev = catStr(darkness, james);
 
     printStr(jam_dark);
     printStr(jam_dark_rev);
+    // arrayString hello = subString(darkness, 1,6); // "hello "
+    // arrayString oldFriend = subString(darkness, 9,28); // " my old friend"
+    // arrayString helloJames = catStr(hello, james);
+    // arrayString fullSentance = catStr(helloJames, oldFriend);
 
     // cleanup memory allocation;
+    {
     delete[] word;
     delete[] james;
     delete[] darkness;
     delete[] jam_dark;
     delete[] jam_dark_rev;
+    }
 
     // cleanup dangling reference;
+    {
     word = 0;
     james = 0;
     darkness = 0;
     jam_dark = 0;
     jam_dark_rev = 0;
+    }
 
 }
+
+arrayString subString(arrayString str, int startPos, int endPos){
+    int count = 0;
+    arrayString subStr;
+    count = lenghtStr(str);
+
+
+
+}
+
 int lenghtStr(arrayString s){
     int count = 0;
     while (s[count] != 0){
