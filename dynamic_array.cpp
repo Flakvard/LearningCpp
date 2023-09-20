@@ -53,28 +53,57 @@ int main(){
     printStr(abcdefg);
     arrayString cdef = subString(abcdefg,3,4);
     printStr(cdef);
-    // arrayString hello = subString(darkness, 1,6); // "hello "
-    // arrayString oldFriend = subString(darkness, 9,28); // " my old friend"
-    // arrayString helloJames = catStr(hello, james);
-    // arrayString fullSentance = catStr(helloJames, oldFriend);
+    arrayString helloOnly = subString(darkness, 1,6); // "hello "
+    // "hello darkness my old friend" = 28 total
+    // "hello                       " 1 and 6 forward
+    arrayString oldFriend = subString(darkness, 15,14); // " my old friend"
+    // "hello darkness my old friend" 
+    // "               my old friend" 15 and 14 forward
+    arrayString helloJames = catStr(helloOnly, james);
+    arrayString fullSentance = catStr(helloJames, oldFriend);
+    printStr(fullSentance); 
+    std::cout<<"and\n";
+
+    arrayString darkn = subString(darkness, 7,8);
+    // "hello darkness my old friend" 
+    // "      darkness my old friend" 
+    arrayString helloDark = catStr(helloOnly, darkn);
+    arrayString fullSentance1 = catStr(helloDark, oldFriend);
+    printStr(fullSentance1);
 
     // cleanup memory allocation;
-    {
     delete[] word;
     delete[] james;
     delete[] darkness;
     delete[] jam_dark;
     delete[] jam_dark_rev;
-    }
 
-    // cleanup dangling reference;
-    {
+    delete[] abcdefg;
+    delete[] cdef;
+    delete[] helloOnly; // "hello "
+    delete[] oldFriend; // " my old friend"
+    delete[] helloJames;
+    delete[] fullSentance;
+    delete[] darkn;
+    delete[] helloDark;
+    delete[] fullSentance1;
+
+    // cleanup dangling reference
     word = 0;
     james = 0;
     darkness = 0;
     jam_dark = 0;
     jam_dark_rev = 0;
-    }
+
+    abcdefg = 0;
+    cdef = 0;
+    helloOnly = 0; // "hello "
+    oldFriend = 0; // " my old friend"
+    helloJames = 0;
+    fullSentance = 0;
+    darkn = 0;
+    helloDark = 0;
+    fullSentance1 = 0;
 
 }
 
@@ -82,10 +111,14 @@ arrayString subString(const arrayString str, int startPos, int endPos){
     int count = 0;
     count = lenghtStr(str);
     // create a substring that is large enough to fit start to finish
-    arrayString subStr = new char[startPos+endPos-1];
+    //arrayString subString= new char[startPos+endPos-1];
+    // refactor 
+    arrayString subStr = new char[1];
+    subStr[0] = 0;
+
     for (int i = 0; i < endPos; i++){
         // starPos - 1 because it starts at 0 
-        subStr[i] = str[startPos-1+i];
+        appendStr(subStr, str[startPos-1+i]);
     }
     return subStr;
 }
