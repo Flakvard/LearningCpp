@@ -36,7 +36,7 @@ public:
     studentCollection(/* args */);
     void addRecord(studentRecord studentData);
     studentRecord recordWithNumber(int idNum);
-    void removeRecord();
+    void removeRecord(studentRecord student);
     void printRecords();
     ~studentCollection();
 private:
@@ -71,12 +71,34 @@ studentRecord studentCollection::recordWithNumber(int idNum)
     }
 }
 
-void studentCollection::removeRecord()
-{
+void studentCollection::removeRecord(studentRecord student){
+
+    studentNode * loopPtr = _listHead;
+    studentNode * placement = loopPtr;
+    while (loopPtr->next != NULL && loopPtr->studentData.id != student.id){
+        placement = loopPtr;
+        loopPtr = loopPtr->next;
+    }
+    // No student found in StudentCollection
+    if (loopPtr == NULL){
+        return;
+    // End of the linked list
+    }else if (loopPtr->next == NULL){
+        placement->next = NULL;
+        delete loopPtr;
+    // Middle of the linked list
+    }else{
+        placement->next = loopPtr->next; 
+        delete loopPtr;
+    }
 }
 
 void studentCollection::printRecords(){
     studentNode * loopPtr = _listHead;
+    if (loopPtr == NULL){
+        std::cout<<"Nothing inside list\n";
+        return;
+    }
     while (loopPtr->next != NULL){
         std::cout<<"ID: "
                  <<loopPtr->studentData.id
@@ -87,9 +109,7 @@ void studentCollection::printRecords(){
                  <<'\n';
         loopPtr = loopPtr->next;
     }
-    if (loopPtr == NULL){
-        return;
-    }else{
+    if (loopPtr != NULL){
         std::cout<<"ID: "
                  <<loopPtr->studentData.id
                  <<"\nName: "
@@ -103,11 +123,21 @@ void studentCollection::printRecords(){
 
 studentCollection::~studentCollection()
 {
+    studentNode * loopPtr = _listHead;
+    while (loopPtr != NULL){
+        studentNode * deleteNode = loopPtr;
+        loopPtr = loopPtr->next;
+        delete deleteNode;
+    }
+    std::cout<<"destructor called\n";
+    _listHead = NULL;
+    printRecords();
 }
 
 
 int main(){
 
+{
     studentCollection sc;
     {
         studentRecord charles;
@@ -115,22 +145,39 @@ int main(){
         charles.grade = 12;
         charles.name = "Charles";
         sc.addRecord(charles);
-    }
-    sc.printRecords();
-    {
+
         studentRecord bobby(2,4,"Bobby");
         sc.addRecord(bobby);
-    }
-    {
+
         studentRecord tommy(3,7,"Tommy");
         sc.addRecord(tommy);
+
+        studentRecord chuck(4,10,"Chuck");
+        sc.addRecord(chuck);
+
+
+        studentRecord will(5,12,"Will");
+        sc.addRecord(will);
     }
+
     sc.printRecords();
 
-    studentRecord idTwoStudent = sc.recordWithNumber(2);
-    studentRecord idOneStudent = sc.recordWithNumber(1);
-    idOneStudent.printStudent();
-    idTwoStudent.printStudent();
+    {
+        studentRecord idTwoStudent = sc.recordWithNumber(2);
+        studentRecord idOneStudent = sc.recordWithNumber(1);
+        studentRecord idFourStudent = sc.recordWithNumber(4);
+        //idOneStudent.printStudent();
+        //idTwoStudent.printStudent();
+        sc.removeRecord(idTwoStudent);
+        sc.removeRecord(idFourStudent);
+        sc.removeRecord(idOneStudent);
+
+    }
+    sc.printRecords();
+}
+    // clean up memory
+    studentCollection sc;
+    sc.printRecords();
 
 
 }
