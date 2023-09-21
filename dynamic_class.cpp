@@ -1,8 +1,10 @@
 #include <iostream>
+#include <string>
 
 struct studentRecord{
     int id = 0;
     int grade = 0;
+    std::string name = "";
 };
 
 class studentCollection
@@ -44,12 +46,11 @@ studentRecord studentCollection::recordWithNumber(int idNum)
         loopPtr = loopPtr->next;
     }
     if (loopPtr == NULL){
-        studentRecord dummyRecord(-1,-1);
+        studentRecord dummyRecord;
         return dummyRecord;
     }else{
         return loopPtr->studentData;
     }
-    
 }
 
 void studentCollection::removeRecord()
@@ -62,6 +63,13 @@ studentCollection::~studentCollection()
 
 
 int main(){
+
+    studentCollection sc;
+    studentRecord charles;
+    charles.id = 1;
+    charles.grade = 12;
+    charles.name = "Charles";
+    sc.addRecord(charles);
 
 
 
