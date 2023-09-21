@@ -38,11 +38,14 @@ public:
     studentRecord recordWithNumber(int idNum);
     void removeRecord(studentRecord student);
     void printRecords();
-    void deleteList();
     ~studentCollection();
+    studentCollection& operator=(const studentCollection& rhs);
 private:
     typedef studentNode * studentList;
     studentList _listHead;
+    void deleteList(studentList &listHead);
+    studentList copyStudentCollection(const studentList& original);
+
 };
 
 studentCollection::studentCollection(/* args */)
@@ -76,7 +79,7 @@ void studentCollection::removeRecord(studentRecord student){
 
     studentNode * loopPtr = _listHead;
     studentNode * trailing = loopPtr;
-    while (loopPtr->next != NULL && loopPtr->studentData.id != student.id){
+    while (loopPtr != NULL && loopPtr->studentData.id != student.id){
         trailing = loopPtr;
         loopPtr = loopPtr->next;
     }
@@ -84,9 +87,14 @@ void studentCollection::removeRecord(studentRecord student){
     if (loopPtr == NULL){
         return;
     // End of the linked list
-    }else if (loopPtr->next == NULL){
+    }
+    if (loopPtr->next == NULL){
         trailing->next = NULL;
         delete loopPtr;
+    // First of the linked list
+    }else if(trailing==loopPtr){
+        delete loopPtr;
+        _listHead = loopPtr->next;
     // Middle of the linked list
     }else{
         trailing->next = loopPtr->next; 
@@ -100,7 +108,7 @@ void studentCollection::printRecords(){
         std::cout<<"Nothing inside list\n";
         return;
     }
-    while (loopPtr->next != NULL){
+    while (loopPtr != NULL){
         std::cout<<"ID: "
                  <<loopPtr->studentData.id
                  <<"\nName: "
@@ -122,23 +130,49 @@ void studentCollection::printRecords(){
     
 }
 
-void studentCollection::deleteList(){
-    studentNode * loopPtr = _listHead;
+void studentCollection::deleteList(studentList &listHead){
+    studentNode * loopPtr = listHead;
     while (loopPtr != NULL){
         studentNode * deleteNode = loopPtr;
         loopPtr = loopPtr->next;
         delete deleteNode;
     }
     _listHead = NULL;
-    printRecords();
 
 }
 
+studentCollection::studentList studentCollection::copyStudentCollection(const studentList& original){
+    if (original == NULL)
+        return NULL;
+    
+    studentList newList = new studentNode;
+    newList->studentData = original->studentData;
+    studentNode * newPtr = newList;
+    studentNode * oldPtr = original->next;
+
+    while (oldPtr != NULL){
+        newPtr->next = new studentNode;
+        newPtr = newPtr->next;
+        newPtr->studentData = oldPtr->studentData;
+        oldPtr = oldPtr->next;
+    }
+    newPtr->next = NULL;
+
+    return newList;
+}
 studentCollection::~studentCollection(){
-    deleteList();
     std::cout<<"destructor called\n";
+    deleteList(_listHead);
 }
 
+studentCollection& studentCollection::operator=(const studentCollection& rhs){
+    
+    if (this != &rhs){
+        deleteList(_listHead);
+        _listHead =  copyStudentCollection(rhs._listHead);
+    }
+        return *this; 
+}
 
 int main(){
 
@@ -180,15 +214,16 @@ int main(){
     sc.printRecords();
 }
 // clean up memory
-// student collection inside brackets
+// 100.000 student nodes inside collection 
 {
     studentCollection sc;
-    for (size_t i = 0; i < 10000; i++){
+    for (size_t i = 0; i < 100000; i++){
         sc.addRecord(studentRecord(i,i,"timmy"));
     }
-    sc.printRecords();
 }
 // clean up memory
+
+// Deep-copy students instead of shallow copy
 {
     studentCollection sc1;
     studentCollection sc2;
@@ -200,6 +235,15 @@ int main(){
 
     studentRecord chuck(4,10,"Chuck");
     sc1.addRecord(chuck);
+
+    sc2 = sc1;
+    sc2.removeRecord(bobby);
+    sc2.removeRecord(tommy);
+    sc2.printRecords();
+
+    sc1.removeRecord(chuck);
+    sc1.removeRecord(tommy);
+    sc1.printRecords();
 }
 
 }
