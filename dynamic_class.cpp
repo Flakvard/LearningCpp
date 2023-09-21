@@ -38,6 +38,7 @@ public:
     studentRecord recordWithNumber(int idNum);
     void removeRecord(studentRecord student);
     void printRecords();
+    void deleteList();
     ~studentCollection();
 private:
     typedef studentNode * studentList;
@@ -74,9 +75,9 @@ studentRecord studentCollection::recordWithNumber(int idNum)
 void studentCollection::removeRecord(studentRecord student){
 
     studentNode * loopPtr = _listHead;
-    studentNode * placement = loopPtr;
+    studentNode * trailing = loopPtr;
     while (loopPtr->next != NULL && loopPtr->studentData.id != student.id){
-        placement = loopPtr;
+        trailing = loopPtr;
         loopPtr = loopPtr->next;
     }
     // No student found in StudentCollection
@@ -84,11 +85,11 @@ void studentCollection::removeRecord(studentRecord student){
         return;
     // End of the linked list
     }else if (loopPtr->next == NULL){
-        placement->next = NULL;
+        trailing->next = NULL;
         delete loopPtr;
     // Middle of the linked list
     }else{
-        placement->next = loopPtr->next; 
+        trailing->next = loopPtr->next; 
         delete loopPtr;
     }
 }
@@ -121,22 +122,27 @@ void studentCollection::printRecords(){
     
 }
 
-studentCollection::~studentCollection()
-{
+void studentCollection::deleteList(){
     studentNode * loopPtr = _listHead;
     while (loopPtr != NULL){
         studentNode * deleteNode = loopPtr;
         loopPtr = loopPtr->next;
         delete deleteNode;
     }
-    std::cout<<"destructor called\n";
     _listHead = NULL;
     printRecords();
+
+}
+
+studentCollection::~studentCollection(){
+    deleteList();
+    std::cout<<"destructor called\n";
 }
 
 
 int main(){
 
+// student collection inside brackets
 {
     studentCollection sc;
     {
@@ -159,9 +165,7 @@ int main(){
         studentRecord will(5,12,"Will");
         sc.addRecord(will);
     }
-
     sc.printRecords();
-
     {
         studentRecord idTwoStudent = sc.recordWithNumber(2);
         studentRecord idOneStudent = sc.recordWithNumber(1);
@@ -175,9 +179,27 @@ int main(){
     }
     sc.printRecords();
 }
-    // clean up memory
+// clean up memory
+// student collection inside brackets
+{
     studentCollection sc;
+    for (size_t i = 0; i < 10000; i++){
+        sc.addRecord(studentRecord(i,i,"timmy"));
+    }
     sc.printRecords();
+}
+// clean up memory
+{
+    studentCollection sc1;
+    studentCollection sc2;
 
+    studentRecord bobby(2,4,"Bobby");
+    sc1.addRecord(bobby);
+    studentRecord tommy(3,7,"Tommy");
+    sc1.addRecord(tommy);
+
+    studentRecord chuck(4,10,"Chuck");
+    sc1.addRecord(chuck);
+}
 
 }
