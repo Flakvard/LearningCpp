@@ -39,7 +39,11 @@ void studentCollection::addRecord(studentRecord studentData)
 
 studentRecord studentCollection::recordWithNumber(int idNum)
 {
-    //return studentRecord();
+    studentNode * loopPtr = _listHead;
+    while (loopPtr->studentData.id != idNum){
+        loopPtr = loopPtr->next;
+    }
+    return loopPtr->studentData;
 }
 
 void studentCollection::removeRecord()
