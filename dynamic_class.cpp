@@ -40,10 +40,16 @@ void studentCollection::addRecord(studentRecord studentData)
 studentRecord studentCollection::recordWithNumber(int idNum)
 {
     studentNode * loopPtr = _listHead;
-    while (loopPtr->studentData.id != idNum){
+    while (loopPtr->next != NULL && loopPtr->studentData.id != idNum){
         loopPtr = loopPtr->next;
     }
-    return loopPtr->studentData;
+    if (loopPtr == NULL){
+        studentRecord dummyRecord(-1,-1);
+        return dummyRecord;
+    }else{
+        return loopPtr->studentData;
+    }
+    
 }
 
 void studentCollection::removeRecord()
