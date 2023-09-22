@@ -9,12 +9,19 @@ int sumOfArr(int setofnumbers[], int size){
     return sum;
 }
 
+int dispacterSum(int setofnumbers[], int size){
+    if (size == 0) return 0;
+    int sum = setofnumbers[size];
+    sum = sumOfArr(setofnumbers, size-1);
+    return sum;
+}
+
 int main(){
 
     int setofnumbers[] = {1,3,6,2}; // 12
     int sum = 0;
     int count = 4;
-    sum = sumOfArr(setofnumbers, count);
+    sum = dispacterSum(setofnumbers, count);
 
     std::cout<<sum<<'\n';
 }
