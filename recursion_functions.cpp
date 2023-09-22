@@ -11,8 +11,8 @@ int sumOfArr(int setofnumbers[], int size){
 
 int dispacterSum(int setofnumbers[], int size){
     if (size == 0) return 0;
-    int sum = setofnumbers[size];
-    sum = sumOfArr(setofnumbers, size-1);
+    int sum = setofnumbers[size-1];
+    sum += dispacterSum(setofnumbers, size-1);
     return sum;
 }
 
