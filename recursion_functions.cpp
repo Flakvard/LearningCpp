@@ -32,17 +32,24 @@ int recursivePositivSum(int setofnumbers[], int size){
     positivSum += recursivePositivSum(setofnumbers, size-1);
     return positivSum;
 }
+int recursiveCountNum(int setofnumbers[], int size, int num){
+    if (size == 0) 
+        return 0;
+    int count = 0;
+    count += recursiveCountNum(setofnumbers, size-1, 3);
+    if (setofnumbers[size-1] == num)
+        ++count;
+    return count;
+}
 
 int main(){
 
-    int setofnumbers[] = {1,3,6,2,-4,-2,5,3}; // 14.0
-    int size = 8;
-    int sum = recursiveSumArr(setofnumbers, size); // 14.0
-    double avg = recursiveAvgCaller(setofnumbers, size); // 1.75
-    int posSum = recursivePositivSum(setofnumbers, size); // 20.0
+    int setofnumbers[] = {3,-1,3,6,2,-4,-2,5,3,3}; 
+    int size = sizeof(setofnumbers)/sizeof(setofnumbers[0]);
+    int sum = recursiveSumArr(setofnumbers, size); // 18
+    double avg = recursiveAvgCaller(setofnumbers, size); // 1.8
+    int posSum = recursivePositivSum(setofnumbers, size); // 25
+    int count = recursiveCountNum(setofnumbers, size, 3); // 4
     //double avg = avgArr(setofnumbers, count);
 
-    std::cout<<sum<<'\n';
-    std::cout<<avg<<'\n';
-    std::cout<<posSum<<'\n';
 }
