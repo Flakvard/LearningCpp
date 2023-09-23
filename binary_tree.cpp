@@ -53,9 +53,9 @@ void BinaryTree::appendLeaf(treeData leafData, binaryNode* node)
     }
 
 
+    while (tree != NULL){
     int nodesBelowleft = countLeaf(tree->nextLeft);
     int nodesBelowRight = countLeaf(tree->nextRight);
-    while (tree != NULL){
 
         // Second Round
         if (tree != NULL){
@@ -98,13 +98,14 @@ void BinaryTree::printLeaf(binaryNode *node, int level){
     if (node == NULL)
         return;
         
-    std::cout<<"ID: "<<node->data.id<<" - Name: "<<node->data.name<<" - Amount: "<<node->data.amount<<'\t';
+    //std::cout<<"ID: "<<node->data.id<<" - Name: "<<node->data.name<<" - Amount: "<<node->data.amount<<'\t';
+    std::cout<<"ID: "<<node->data.id<<" ";
 
     // Start root/node
     int currentLevel = level;
     for (int i = 0; i < level; i++)
     {
-        std::cout<<"    ";
+        std::cout<<"  ";
     }
     std::cout<<"Level: "<<currentLevel<<'\n'; 
     
@@ -185,6 +186,11 @@ int main(){
     treeData slupp;    slupp.id = 10;   slupp.amount  = -12.78;   slupp.name  = "Slupp";    bt.appendTree(slupp); // Right
     treeData jolp;     jolp.id = 11;    jolp.amount   =  73.32;   jolp.name   = "Jolp" ;    bt.appendTree(jolp);  // Left 
     treeData prump;    prump.id = 12;   prump.amount  = -42.47;   prump.name  = "Prump";    bt.appendTree(prump); // Right
+    for (int i = 0; i < 10000; i++){
+        prump.id = i;
+        bt.appendTree(prump);
+    }
+    
     bt.printTree();
     double sum = bt.sumTree();
     std::cout<<"Sum of total tree = "<<sum<<'\n';
@@ -192,3 +198,4 @@ int main(){
     int size = bt.countTree();
     std::cout<<"Total size of tree = "<<size<<'\n';
 }
+// id 755 level 9 vinstra
