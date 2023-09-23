@@ -15,7 +15,7 @@ private:
         binaryNode* nextLeft;
         binaryNode* nextRight;
     };
-    void printLeaf(binaryNode* node);
+    void printLeaf(binaryNode* node, int level);
     double sumLeaf(binaryNode *node);
     int countLeaf(binaryNode *node);
     
@@ -75,14 +75,15 @@ void BinaryTree::appendTree(treeData leafData){
     }
 }
 
-void BinaryTree::printLeaf(binaryNode *node){
+void BinaryTree::printLeaf(binaryNode *node, int level){
     binaryNode * nodePtr = node;
     // no tree
     if (node == NULL)
         return;
 
     // Start root/node
-    std::cout<<"ID: "<<node->data.id<<" - Name: "<<node->data.name<<" - Amount: "<<node->data.amount<<'\n';
+    int currentLevel = level;
+    std::cout<<"Level: "<<currentLevel<<" ID: "<<node->data.id<<" - Name: "<<node->data.name<<" - Amount: "<<node->data.amount<<'\n';
     
     // reached bottom? No == continue, Yes == stop and return
     if (node->nextLeft == NULL && node->nextRight == NULL){
@@ -90,13 +91,14 @@ void BinaryTree::printLeaf(binaryNode *node){
     }
 
     // left side of tree
-    printLeaf(node->nextLeft);
+    printLeaf(node->nextLeft, currentLevel+1);
     // right side of tree
-    printLeaf(node->nextRight);
+    printLeaf(node->nextRight,currentLevel+1);
 }
 void BinaryTree::printTree(){
     binaryNode * tree = _root;
-    printLeaf(tree);
+    int level = 0;
+    printLeaf(tree, level);
 }
 double BinaryTree::sumLeaf(binaryNode *node){
     if (node == NULL)
