@@ -16,11 +16,13 @@ private:
         binaryNode* nextRight;
     };
     void printLeaf(binaryNode* node);
+    double sumLeaf(binaryNode *node);
     
 public:
     BinaryTree();
     void appendTree(treeData node);
     void printTree();
+    double sumTree();
     ~BinaryTree(){};
 private:
     typedef binaryNode* treeNodes;
@@ -78,7 +80,7 @@ void BinaryTree::printLeaf(binaryNode *node){
         return;
 
     // Start root/node
-    std::cout<<node->data.name<<'\n';
+    std::cout<<"ID: "<<node->data.id<<" - Name: "<<node->data.name<<" - Amount: "<<node->data.amount<<'\n';
     
     // reached bottom? No == continue, Yes == stop and return
     if (node->nextLeft == NULL && node->nextRight == NULL){
@@ -94,6 +96,28 @@ void BinaryTree::printTree(){
     binaryNode * tree = _root;
     printLeaf(tree);
 }
+double BinaryTree::sumLeaf(binaryNode *node){
+    if (node == NULL)
+        return 0;
+    double sum = 0;
+    if (node != NULL)
+        sum += node->data.amount;
+    
+    if (node->nextLeft == NULL && node->nextRight == NULL){
+       return sum;
+    }
+
+    sum += sumLeaf(node->nextLeft);
+    sum += sumLeaf(node->nextRight);
+
+    return sum;
+
+}
+double BinaryTree::sumTree(){
+    binaryNode * tree = _root;
+    return sumLeaf(tree);
+}
+
 
 int main(){
 
@@ -110,4 +134,6 @@ int main(){
     treeData jolp;     jolp.id = 11;    jolp.amount   =  73.32;   jolp.name   = "Jolp" ;    bt.appendTree(jolp);  // Left  y
     treeData prump;    prump.id = 12;   prump.amount  = -42.47;   prump.name  = "Prump";    bt.appendTree(prump); // Right y
     bt.printTree();
+    double sum = bt.sumTree();
+    std::cout<<"Sum of total tree = "<<sum<<'\n';
 }
