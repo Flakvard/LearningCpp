@@ -22,6 +22,7 @@ private:
 public:
     BinaryTree();
     void appendTree(treeData node);
+    void appendLeaf(treeData node, binaryNode* root);
     void printTree();
     double sumTree();
     int countTree();
@@ -35,8 +36,10 @@ BinaryTree::BinaryTree(/* args */){
     _root = NULL;
 }
 
-void BinaryTree::appendTree(treeData leafData){
-    binaryNode* tree = _root;
+void BinaryTree::appendLeaf(treeData leafData, binaryNode* node)
+{ 
+    binaryNode* tree = node;
+    // int currentLevel = level;
     
     binaryNode* newNode = new binaryNode;
     newNode->data = leafData;
@@ -49,7 +52,11 @@ void BinaryTree::appendTree(treeData leafData){
         return;
     }
 
+
+    int nodesBelowleft = countLeaf(tree->nextLeft);
+    int nodesBelowRight = countLeaf(tree->nextRight);
     while (tree != NULL){
+
         // Second Round
         if (tree != NULL){
             if (tree->nextLeft == NULL){
@@ -71,8 +78,18 @@ void BinaryTree::appendTree(treeData leafData){
             break;
         }
         // Go down one level 
-        tree = tree->nextLeft;
+        tree = (nodesBelowRight >= nodesBelowleft) 
+            ? tree->nextLeft : tree->nextRight;
+
+        // tree = tree->nextLeft;
     }
+
+}
+
+void BinaryTree::appendTree(treeData leafData){
+    binaryNode* tree = _root;
+    appendLeaf(leafData, tree);
+
 }
 
 void BinaryTree::printLeaf(binaryNode *node, int level){
