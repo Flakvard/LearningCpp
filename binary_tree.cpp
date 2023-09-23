@@ -80,10 +80,16 @@ void BinaryTree::printLeaf(binaryNode *node, int level){
     // no tree
     if (node == NULL)
         return;
+        
+    std::cout<<"ID: "<<node->data.id<<" - Name: "<<node->data.name<<" - Amount: "<<node->data.amount<<'\t';
 
     // Start root/node
     int currentLevel = level;
-    std::cout<<"Level: "<<currentLevel<<" ID: "<<node->data.id<<" - Name: "<<node->data.name<<" - Amount: "<<node->data.amount<<'\n';
+    for (int i = 0; i < level; i++)
+    {
+        std::cout<<"    ";
+    }
+    std::cout<<"Level: "<<currentLevel<<'\n'; 
     
     // reached bottom? No == continue, Yes == stop and return
     if (node->nextLeft == NULL && node->nextRight == NULL){
