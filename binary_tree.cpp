@@ -1,10 +1,9 @@
 #include <iostream>
-#include <cstring>
 struct treeData
 {
     int id;
     double amount;
-    char name[45] = {0};
+    std::string name;
 };
 
 class BinaryTree
@@ -174,35 +173,23 @@ int BinaryTree::countTree()
 }
 
 int main(){
-     char Jippy[45] = {'J','i','p','p','y'} ;
-     char Tommy[45] = {'T','o','m','m','y'} ;
-     char Booby[45] = {'B','o','o','b','y'} ;
-     char Wompy[45] = {'W','o','m','p','y'} ;
-     char Marko[45] = {'M','a','r','k','o'} ;
-     char Jumper[45]= {'J','u','m','p','e','r'};
-     char Dillan[45]= {'D','i','l','l','a','n'};
-     char Noob[45]  = {'N','o','o','b'} ;
-     char Slupp[45] = {'S','l','u','p','p'} ;
-     char Jolp[45]  = {'J','o','l','p'} ;
-     char Prump[45] = {'P','r','u','m','p'} ;
 
     BinaryTree bt;
-    treeData jippy;    jippy.id = 1;    jippy.amount  = 150.20;   std::strcpy(jippy.name  , Jippy);    bt.appendTree(jippy); // HEAD 
-    treeData tommy;    tommy.id = 2;    tommy.amount  = 252.60;   std::strcpy(tommy.name  , Tommy);    bt.appendTree(tommy); // Left 
-    treeData booby;    booby.id = 3;    booby.amount  = -55.22;   std::strcpy(booby.name  , Booby);    bt.appendTree(booby); // Right
-    treeData wompy;    wompy.id = 4;    wompy.amount  = 159.98;   std::strcpy(wompy.name  , Wompy);    bt.appendTree(wompy); // Left 
-    treeData marko;    marko.id = 5;    marko.amount  =  73.32;   std::strcpy(marko.name  , Marko);    bt.appendTree(marko); // Right
-    treeData jumper;   jumper.id = 6;   jumper.amount = -42.47;   std::strcpy(jumper.name , Jumper);   bt.appendTree(jumper);// Left 
-    treeData dillan;   dillan.id = 7;   dillan.amount = 112.63;   std::strcpy(dillan.name , Dillan);   bt.appendTree(dillan);// Right
-    treeData noob;     noob.id = 9;     noob.amount   =  22.22;   std::strcpy(noob.name   , Noob);     bt.appendTree(noob);  // Left 
-    treeData slupp;    slupp.id = 10;   slupp.amount  = -12.78;   std::strcpy(slupp.name  , Slupp);    bt.appendTree(slupp); // Right
-    treeData jolp;     jolp.id = 11;    jolp.amount   =  73.32;   std::strcpy(jolp.name   , Jolp);     bt.appendTree(jolp);  // Left 
-    treeData prump;    prump.id = 12;   prump.amount  = -42.47;   std::strcpy(prump.name  , Prump);    bt.appendTree(prump); // Right
+    treeData jippy;    jippy.id = 1;    jippy.amount  = 150.20;   jippy.name  = "Jippy";    bt.appendTree(jippy); // HEAD 
+    treeData tommy;    tommy.id = 2;    tommy.amount  = 252.60;   tommy.name  = "Tommy";    bt.appendTree(tommy); // Left 
+    treeData booby;    booby.id = 3;    booby.amount  = -55.22;   booby.name  = "Booby";    bt.appendTree(booby); // Right
+    treeData wompy;    wompy.id = 4;    wompy.amount  = 159.98;   wompy.name  = "Wompy";    bt.appendTree(wompy); // Left 
+    treeData marko;    marko.id = 5;    marko.amount  =  73.32;   marko.name  = "Marko";    bt.appendTree(marko); // Right
+    treeData jumper;   jumper.id = 6;   jumper.amount = -42.47;   jumper.name = "Jumper";   bt.appendTree(jumper);// Left 
+    treeData dillan;   dillan.id = 7;   dillan.amount = 112.63;   dillan.name = "Dillan";   bt.appendTree(dillan);// Right
+    treeData noob;     noob.id = 9;     noob.amount   =  22.22;   noob.name   = "Noob" ;    bt.appendTree(noob);  // Left 
+    treeData slupp;    slupp.id = 10;   slupp.amount  = -12.78;   slupp.name  = "Slupp";    bt.appendTree(slupp); // Right
+    treeData jolp;     jolp.id = 11;    jolp.amount   =  73.32;   jolp.name   = "Jolp" ;    bt.appendTree(jolp);  // Left 
+    treeData prump;    prump.id = 12;   prump.amount  = -42.47;   prump.name  = "Prump";    bt.appendTree(prump); // Right
     for (int i = 0; i < 100000; i++){
         prump.id = i;
         bt.appendTree(prump);
     }
-
     // levels 06  ==    100 nodes
     // levels 09  ==   1000 nodes
     // levels 13  ==  10000 nodes
@@ -210,9 +197,15 @@ int main(){
     // levels 16  ==  75000 nodes
     // levels 16  == 100000 nodes
 
+    // char[45]
     // real 5m49.819s
     // user 5m21.773s
     // sys  0m00.536s
+    
+    // std::string
+    // real 5m41.127s
+    // user 5m13.784s
+    // sys  0m00.554s
     
     bt.printTree();
     // double sum = bt.sumTree();
@@ -221,4 +214,3 @@ int main(){
     // int size = bt.countTree();
     // std::cout<<"Total size of tree = "<<size<<'\n';
 }
-// id 755 level 9 vinstra
