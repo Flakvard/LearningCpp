@@ -1,0 +1,200 @@
+/*
+    Create a binary search tree which is a tree where each node value is
+    greater than any value in the node's left subtree, but 
+    less than any value in the node's right subtree.
+
+*/
+#include <iostream>
+#include <random>
+
+struct Amount
+{
+    double amount = 0;
+    int id;
+};
+
+class binary_search_tree
+{
+private:
+    struct leafNode
+    {
+        Amount num;
+        int duplicate;
+        leafNode* nextLeft;
+        leafNode* nextRight;
+    };
+public:
+    binary_search_tree();
+    void append(Amount data);
+    void appendBST(leafNode* tree, leafNode* newNode);
+    ~binary_search_tree();
+    void printTree();
+    void printLeaf(leafNode* node, int level);
+private:
+    typedef leafNode* treeHead;
+    treeHead _root;
+};
+
+binary_search_tree::binary_search_tree(){
+    _root = NULL;
+}
+
+void binary_search_tree::printLeaf(leafNode* node, int level){
+    leafNode * nodePtr = node;
+    // no tree
+    if (node == NULL)
+        return;
+        
+    //std::cout<<"ID: "<<node->data.id<<" - Name: "<<node->data.name<<" - Amount: "<<node->data.amount<<'\t';
+    std::cout<<"ID: "<<node->num.id<<" Amount: "<<node->num.amount<<" ";
+
+
+    // Start root/node
+    int currentLevel = level;
+    for (int i = 0; i < level; i++)
+    {
+        std::cout<<"  ";
+    }
+    std::cout<<"Level: "<<currentLevel<<'\n'; 
+    
+    // reached bottom? No == continue, Yes == stop and return
+    if (node->nextLeft == NULL && node->nextRight == NULL){
+        return;
+    }
+
+    // left side of tree
+    printLeaf(node->nextLeft, currentLevel+1);
+    // right side of tree
+    printLeaf(node->nextRight,currentLevel+1);
+}
+void binary_search_tree::printTree(){
+    leafNode * tree = _root;
+    int level = 0;
+    printLeaf(tree, level);
+}
+
+void binary_search_tree::appendBST(leafNode *Tree, leafNode *node)
+{ 
+    leafNode* newNode = node;
+    leafNode* tree = Tree;
+
+    // If newNode is greater than tree and there is a node in subtree right
+    if (tree->nextRight != NULL && newNode->num.amount > tree->num.amount){
+        // if (tree->nextRight->num.amount == newNode->num.amount)
+        // {
+        //     ++tree->nextRight->duplicate;
+        //     delete newNode;
+        //     return;
+        // }
+        
+        if (newNode->num.amount > tree->nextRight->num.amount)
+        {
+            // old node - Go down right path
+            // store old node
+            leafNode* newAllocation = tree->nextRight;
+            // assign new node into old node path
+            tree->nextRight = newNode;
+            // go down left path
+            tree = tree->nextRight;
+            // Recursive check for the old node
+            appendBST(tree, newAllocation);
+        }else{
+            // newnode - Go down left path
+            tree = tree->nextRight;
+            appendBST(tree , newNode);
+        }
+    }
+
+    // If treeLeft is NOT NULL and
+    // newNode is less than tree 
+    if (tree->nextLeft != NULL && newNode->num.amount < tree->num.amount){
+        // if (tree->nextLeft->num.amount == newNode->num.amount)
+        // {
+        //     ++tree->nextLeft->duplicate;
+        //     delete newNode;
+        //     return;
+        // }
+        // check if newNode is greater or less than subtree
+        if (newNode->num.amount > tree->nextLeft->num.amount)
+        {
+            // old node - Go down right path
+            // store old node
+            leafNode* newAllocation = tree->nextLeft;
+            // assign new node into old node path
+            tree->nextLeft = newNode;
+            // go down left path
+            tree = tree->nextLeft;
+            // Recursive check for the old node
+            appendBST(tree, newAllocation);
+        }else{
+            // newnode - Go down left path
+            tree = tree->nextLeft;
+            appendBST(tree, newNode);
+        }
+    }
+    
+    // If treeLeft is NULL and
+    // newNode is less than tree 
+    if (tree->nextLeft == NULL & newNode->num.amount < tree->num.amount){
+        tree->nextLeft = newNode;
+    }
+
+    // If treeRight is NULL and
+    // newNode is greater than tree 
+    if (tree->nextRight == NULL & newNode->num.amount > tree->num.amount){
+        tree->nextRight = newNode;
+    }
+
+}
+
+
+binary_search_tree::~binary_search_tree()
+{
+    // Nothing to do yet
+}
+
+void binary_search_tree::append(Amount data)
+{
+    leafNode* newNode = new leafNode;
+    newNode->num = data;
+    newNode->nextLeft = NULL;
+    newNode->nextRight = NULL;
+    newNode->duplicate = 1;
+
+    leafNode* tree = _root;
+
+    if (tree == NULL){
+        _root = newNode;
+        return;
+    }else{
+        appendBST(tree, newNode);
+        return;
+    }
+}
+
+int main(){
+
+    binary_search_tree bst;
+
+    int val[] = {78,32,99,8,6,10,32,55,12,3,50,60,34,92,34,21,87,52,23,44,47,29,22};
+    //          {01,02,03,3,4,05,06,07,08,9,10,11,12,13,14,15,16,17,18,19,20,21,22};
+    
+    int size = sizeof(val)/sizeof(val[0]);
+
+    //for (int i = 0; i < size; i++)
+    //{
+        //std::cout<<val[i]<<'\n';
+    //}
+
+    Amount a;
+    for (int i = 1; i <= size; i++){
+        // a.amount = rand() % 100;
+        a.amount = val[i];
+        a.id = i;
+        bst.append(a);
+    }
+    bst.printTree();
+
+
+
+}
