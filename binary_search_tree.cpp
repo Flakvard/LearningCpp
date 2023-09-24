@@ -29,8 +29,10 @@ public:
     void appendBST(leafNode* tree, leafNode* newNode);
     ~binary_search_tree();
     void printTree();
-    void printLeaf(leafNode* node, int level);
+    double findAmount(double amount);
 private:
+    void printLeaf(leafNode* node, int level);
+    double findAmountNode(leafNode* tree, double amount);
     typedef leafNode* treeHead;
     treeHead _root;
 };
@@ -46,7 +48,7 @@ void binary_search_tree::printLeaf(leafNode* node, int level){
         return;
         
     //std::cout<<"ID: "<<node->data.id<<" - Name: "<<node->data.name<<" - Amount: "<<node->data.amount<<'\t';
-    std::cout<<"ID: "<<node->num.id<<" Amount: "<<node->num.amount<<" ";
+    std::cout<<"ID: "<<node->num.id<<"\tDupl: "<<node->duplicate<<"\tAmt: "<<node->num.amount<<"\t";
 
 
     // Start root/node
@@ -55,7 +57,7 @@ void binary_search_tree::printLeaf(leafNode* node, int level){
     {
         std::cout<<"  ";
     }
-    std::cout<<"Level: "<<currentLevel<<'\n'; 
+    std::cout<<"Lvl: "<<currentLevel<<'\n'; 
     
     // reached bottom? No == continue, Yes == stop and return
     if (node->nextLeft == NULL && node->nextRight == NULL){
@@ -172,6 +174,27 @@ void binary_search_tree::appendBST(leafNode *Tree, leafNode *node)
 
 }
 
+double binary_search_tree::findAmount(double amount){
+
+    leafNode* tree = _root;
+    double amountFound = 0;
+    amountFound += findAmountNode(tree,amount);
+    return amountFound;
+
+}
+double binary_search_tree::findAmountNode(leafNode* Tree, double amountToFind){
+    if (Tree == NULL)
+        return 0.0;    
+    double amount = 0;
+    leafNode *tree = Tree;
+    if (tree->num.amount == amountToFind){
+        ++tree->duplicate;
+        amount = tree->num.amount;
+    }
+    amount += findAmountNode(tree->nextLeft, amountToFind);
+    amount += findAmountNode(tree->nextRight, amountToFind);
+    return amount;
+}
 
 binary_search_tree::~binary_search_tree()
 {
@@ -212,11 +235,15 @@ int main(){
     //}
 
     Amount a;
-    for (int i = 0; i < size; i++){
-        // a.amount = rand() % 100;
-        a.amount = val[i];
+    a.amount = 50;
+    a.id = 0;
+    bst.append(a);
+    for (int i = 0; i < 200; i++){
+        a.amount = rand() % 100;
+        //a.amount = val[i];
         a.id = i+1;
         bst.append(a);
     }
-    bst.printTree();
+    double amount = bst.findAmount(34);
+
 }
