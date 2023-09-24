@@ -98,10 +98,12 @@ void binary_search_tree::appendBST(leafNode *Tree, leafNode *node)
             tree = tree->nextRight;
             // Recursive check for the old node
             appendBST(tree, newAllocation);
+            return;
         }else{
             // newnode - Go down left path
             tree = tree->nextRight;
             appendBST(tree , newNode);
+            return;
         }
     }
 
@@ -117,6 +119,25 @@ void binary_search_tree::appendBST(leafNode *Tree, leafNode *node)
         // check if newNode is greater or less than subtree
         if (newNode->num.amount > tree->nextLeft->num.amount)
         {
+            // if nextRight is NOT NULL
+            // newNode is greather than nextRight
+            if (tree->nextRight != NULL && newNode->num.amount > tree->nextRight->num.amount)
+            {
+                // old node - Go down right path
+                // store old node
+                leafNode* newAllocation = tree->nextRight;
+                // assign new node into old node path
+                tree->nextRight = newNode;
+                // go down left path
+                tree = tree->nextRight;
+                // Recursive check for the old node
+                appendBST(tree, newAllocation);
+                return;
+            }else if (tree->nextRight == NULL)
+            {
+                tree->nextRight = newNode;
+                return;
+            }
             // old node - Go down right path
             // store old node
             leafNode* newAllocation = tree->nextLeft;
@@ -126,23 +147,27 @@ void binary_search_tree::appendBST(leafNode *Tree, leafNode *node)
             tree = tree->nextLeft;
             // Recursive check for the old node
             appendBST(tree, newAllocation);
+            return;
         }else{
             // newnode - Go down left path
             tree = tree->nextLeft;
             appendBST(tree, newNode);
+            return;
         }
     }
     
     // If treeLeft is NULL and
     // newNode is less than tree 
-    if (tree->nextLeft == NULL & newNode->num.amount < tree->num.amount){
+    if (tree->nextLeft == NULL && newNode->num.amount < tree->num.amount){
         tree->nextLeft = newNode;
+        return;
     }
 
     // If treeRight is NULL and
     // newNode is greater than tree 
-    if (tree->nextRight == NULL & newNode->num.amount > tree->num.amount){
+    if (tree->nextRight == NULL && newNode->num.amount > tree->num.amount){
         tree->nextRight = newNode;
+        return;
     }
 
 }
@@ -176,8 +201,8 @@ int main(){
 
     binary_search_tree bst;
 
-    int val[] = {78,32,99,8,6,10,32,55,12,3,50,60,34,92,34,21,87,52,23,44,47,29,22};
-    //          {01,02,03,3,4,05,06,07,08,9,10,11,12,13,14,15,16,17,18,19,20,21,22};
+    int val[] = {40,78,32,99,8,6,10,33,55,12,3,50,60,34,92,34,21,87,52,23,44,47,29,22};
+    //          {01,02,03,3,4,05,06,07,08,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23};
     
     int size = sizeof(val)/sizeof(val[0]);
 
@@ -187,14 +212,11 @@ int main(){
     //}
 
     Amount a;
-    for (int i = 1; i <= size; i++){
+    for (int i = 0; i < size; i++){
         // a.amount = rand() % 100;
         a.amount = val[i];
-        a.id = i;
+        a.id = i+1;
         bst.append(a);
     }
     bst.printTree();
-
-
-
 }
