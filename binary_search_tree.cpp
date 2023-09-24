@@ -80,15 +80,11 @@ void binary_search_tree::appendBST(leafNode *Tree, leafNode *node)
     leafNode* newNode = node;
     leafNode* tree = Tree;
 
-    // If newNode is greater than tree and there is a node in subtree right
+    // If treeLeft is NOT NULL and
+    // newNode is greater than tree
     if (tree->nextRight != NULL && newNode->num.amount > tree->num.amount){
-        // if (tree->nextRight->num.amount == newNode->num.amount)
-        // {
-        //     ++tree->nextRight->duplicate;
-        //     delete newNode;
-        //     return;
-        // }
         
+        // check if newNode is greater or less than subtree
         if (newNode->num.amount > tree->nextRight->num.amount)
         {
             // old node - Go down right path
@@ -112,12 +108,7 @@ void binary_search_tree::appendBST(leafNode *Tree, leafNode *node)
     // If treeLeft is NOT NULL and
     // newNode is less than tree 
     if (tree->nextLeft != NULL && newNode->num.amount < tree->num.amount){
-        // if (tree->nextLeft->num.amount == newNode->num.amount)
-        // {
-        //     ++tree->nextLeft->duplicate;
-        //     delete newNode;
-        //     return;
-        // }
+
         // check if newNode is greater or less than subtree
         if (newNode->num.amount > tree->nextLeft->num.amount)
         {
@@ -185,14 +176,20 @@ double binary_search_tree::findAmount(double amount){
 double binary_search_tree::findAmountNode(leafNode* Tree, double amountToFind){
     if (Tree == NULL)
         return 0.0;    
+
     double amount = 0;
     leafNode *tree = Tree;
     if (tree->num.amount == amountToFind){
         ++tree->duplicate;
         amount = tree->num.amount;
     }
-    amount += findAmountNode(tree->nextLeft, amountToFind);
-    amount += findAmountNode(tree->nextRight, amountToFind);
+    if (amountToFind < tree->num.amount)
+    {
+        amount += findAmountNode(tree->nextLeft, amountToFind);
+    }else{
+        amount += findAmountNode(tree->nextRight, amountToFind);
+    }
+    
     return amount;
 }
 
@@ -203,6 +200,10 @@ binary_search_tree::~binary_search_tree()
 
 void binary_search_tree::append(Amount data)
 {
+    double foundAmount = findAmount(data.amount);
+    if (foundAmount > 0)
+        return;
+    
     leafNode* newNode = new leafNode;
     newNode->num = data;
     newNode->nextLeft = NULL;
@@ -238,12 +239,12 @@ int main(){
     a.amount = 50;
     a.id = 0;
     bst.append(a);
-    for (int i = 0; i < 200; i++){
+    for (int i = 0; i < 50; i++){
         a.amount = rand() % 100;
         //a.amount = val[i];
         a.id = i+1;
         bst.append(a);
     }
-    double amount = bst.findAmount(34);
-
+    bst.printTree();
+    double amount = bst.findAmount(27);
 }
