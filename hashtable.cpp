@@ -9,34 +9,42 @@ public:
     ~hashtable();
     int hashFunction(std::string index);
     void testTable();
-    //void printTable();
+    void printTable();
     int getBucketSize();
-    char* gethashtable();
+    int* gethashtable();
 
 private:
-    int bucketSize = 10;
-    char hashTable[10];
+    int bucketSize;
+    int* hashTable;
 };
 
 void hashtable::testTable(){
     int size = getBucketSize();
-    char* arr = gethashtable();
+    int* arr = gethashtable();
     for (int i = 0; i < size; i++){
         arr[i] = std::rand() % 100;
     }
-
 }
 
-int  hashtable::getBucketSize(){
+int hashtable::getBucketSize(){
     return bucketSize;
 }
-char*  hashtable::gethashtable(){
+int* hashtable::gethashtable(){
     return hashTable;
+}
+
+void hashtable::printTable(){
+    int size = getBucketSize();
+    int* arr = gethashtable();
+    for (int i = 0; i < size; i++){
+        std::cout<<arr[i]<<'\n';
+    }
 }
 
 hashtable::hashtable()
 {
-    // Nothing to do yet
+    bucketSize = 10;
+    hashTable = new int[bucketSize];
 }
 
 hashtable::~hashtable()
@@ -48,8 +56,8 @@ int hashFunction(std::string index){
 }
 
 int main(){
-    char* arr[10];
     hashtable ht;
     ht.testTable();
+    ht.printTable();
 
 }
