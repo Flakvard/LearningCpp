@@ -2,84 +2,94 @@
 #include <iostream>
 #include <random>
 
-class hashtable
-{
+template <typename T> 
+class hashtable {
 public:
     hashtable();
     ~hashtable();
-    int hashFunction(int index);
+    int hashFunction(T index);
     void testTable();
     void printTable();
     int getBucketSize();
-    int* gethashtable();
-    void append(int num);
+    T* gethashtable();
+    void append(T num);
 
 private:
     int bucketSize;
-    int* hashTable;
+    T* hashTable;
 };
 
-void hashtable::testTable(){
+void testHTint();
+void testHTstr();
+
+int main(){
+    hashtable<int> ht;
+    testHTint();
+
+}
+void testHTstr(){
+
+}
+
+void testHTint(){
+    hashtable<int> ht;
+    ht.testTable();
+    ht.printTable();
+    ht.append(0);    ht.append(1);    ht.append(2);    ht.append(3);    ht.append(4);    ht.append(5);    ht.append(6);    ht.append(7);    ht.append(8);    ht.append(9);    ht.append(10);   
+    std::cout<<'\n';
+    ht.printTable();
+}
+
+
+template <typename T> 
+void hashtable<T>::testTable(){
     int size = getBucketSize();
-    int* arr = gethashtable();
+    T* arr = gethashtable();
     for (int i = 0; i < size; i++){
         arr[i] = std::rand() % 100;
     }
 }
 
-int hashtable::getBucketSize(){
+template <typename T> 
+int hashtable<T>::getBucketSize(){
     return bucketSize;
 }
-int* hashtable::gethashtable(){
+template <typename T> 
+T* hashtable<T>::gethashtable(){
     return hashTable;
 }
 
-void hashtable::printTable(){
+template <typename T> 
+void hashtable<T>::printTable(){
     int size = getBucketSize();
-    int* arr = gethashtable();
+    T* arr = gethashtable();
     for (int i = 0; i < size; i++){
         std::cout<<arr[i]<<'\n';
     }
 }
 
-hashtable::hashtable()
+template <typename T> 
+hashtable<T>::hashtable()
 {
     bucketSize = 10;
-    hashTable = new int[bucketSize];
+    hashTable = new T[bucketSize];
 }
 
-hashtable::~hashtable()
+template <typename T> 
+hashtable<T>::~hashtable()
 {
     // Nothing to do yet
 }
-int hashtable::hashFunction(int index){
+template <typename T> 
+int hashtable<T>::hashFunction(T value){
     int sizeofTable = getBucketSize();
-    int indexAt = index % sizeofTable;
-    return indexAt;
+    int index = value % sizeofTable;
+    return index;
 }
 
-void hashtable::append(int num){
+template <typename T>
+void hashtable<T>::append(T num){
     int index = hashFunction(num);
-    int* table = gethashtable();
+    T* table = gethashtable();
     table[index] = num;
-}
-
-int main(){
-    hashtable ht;
-    ht.testTable();
-    ht.printTable();
-    ht.append(0);
-    ht.append(1);
-    ht.append(2);
-    ht.append(3);
-    ht.append(4);
-    ht.append(5);
-    ht.append(6);
-    ht.append(7);
-    ht.append(8);
-    ht.append(9);
-    ht.append(10);
-    std::cout<<'\n';
-    ht.printTable();
-
 }
