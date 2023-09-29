@@ -7,11 +7,12 @@ class hashtable
 public:
     hashtable();
     ~hashtable();
-    int hashFunction(std::string index);
+    int hashFunction(int index);
     void testTable();
     void printTable();
     int getBucketSize();
     int* gethashtable();
+    void append(int num);
 
 private:
     int bucketSize;
@@ -51,13 +52,34 @@ hashtable::~hashtable()
 {
     // Nothing to do yet
 }
-int hashFunction(std::string index){
-    return 0;
+int hashtable::hashFunction(int index){
+    int sizeofTable = getBucketSize();
+    int indexAt = index % sizeofTable;
+    return indexAt;
+}
+
+void hashtable::append(int num){
+    int index = hashFunction(num);
+    int* table = gethashtable();
+    table[index] = num;
 }
 
 int main(){
     hashtable ht;
     ht.testTable();
+    ht.printTable();
+    ht.append(0);
+    ht.append(1);
+    ht.append(2);
+    ht.append(3);
+    ht.append(4);
+    ht.append(5);
+    ht.append(6);
+    ht.append(7);
+    ht.append(8);
+    ht.append(9);
+    ht.append(10);
+    std::cout<<'\n';
     ht.printTable();
 
 }
