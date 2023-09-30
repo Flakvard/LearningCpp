@@ -7,7 +7,8 @@ class hashtable {
 public:
     hashtable();
     ~hashtable();
-    int hashFunction(T index);
+    int hashFunction(int index);
+    int hashFunction(std::string index);
     void testTable();
     void printTable();
     int getBucketSize();
@@ -24,11 +25,14 @@ void testHTstr();
 
 int main(){
     hashtable<int> ht;
-    testHTint();
+    testHTstr();
 
 }
 void testHTstr(){
-
+    hashtable<std::string> ht;
+    ht.append("Hello");    ht.append("my");    ht.append("friend");    ht.append("it is good day,");    ht.append("amirite?");    ht.append("Yes,");    ht.append("very good!");
+    std::cout<<'\n';
+    ht.printTable();
 }
 
 void testHTint(){
@@ -71,7 +75,7 @@ void hashtable<T>::printTable(){
 template <typename T> 
 hashtable<T>::hashtable()
 {
-    bucketSize = 10;
+    bucketSize = 55;
     hashTable = new T[bucketSize];
 }
 
@@ -81,9 +85,22 @@ hashtable<T>::~hashtable()
     // Nothing to do yet
 }
 template <typename T> 
-int hashtable<T>::hashFunction(T value){
+int hashtable<T>::hashFunction(int value){
     int sizeofTable = getBucketSize();
     int index = value % sizeofTable;
+    return index;
+}
+template <typename T> 
+int hashtable<T>::hashFunction(std::string value){
+    int sizeofTable = getBucketSize();
+    int count = value.length();
+    int val = 0;
+    for (int i = 0; i < count; i++)
+    {
+        val += static_cast<int>(value[i]);
+    }
+    
+    int index = val % sizeofTable;
     return index;
 }
 
